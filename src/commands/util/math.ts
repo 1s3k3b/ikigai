@@ -22,19 +22,42 @@ module.exports = class extends Command {
         });
     }
 
+    private resolveValue(x: any, depth = 0): number | string {
+        return x && (typeof x === 'number'
+            ? x
+            : typeof x === 'string'
+                ? `'${x}'`
+                : typeof x === 'boolean'
+                    ? `[boolean] ${x}`
+                    : x instanceof Array
+                        ? depth
+                            ? `[${x.map(x => this.resolveValue(x, 1)).join(', ')}]`
+                            : x
+                                .map(x => this.resolveValue(x, 1))
+                                .join('\n')
+                        : x.constructor.name === 'ResultSet'
+                            ? this.resolveValue(x.entries, depth)
+                            : x.constructor.name === 'Matrix'
+                                ? this.resolveValue(x._data, depth)
+                                : typeof x === 'function'
+                                    ? x.syntax
+                                    : depth
+                                        ? `{ ${Object.entries(x).map(([k, v]) => `[${k}: ${this.resolveValue(v, 1)}]`).join(', ')} }`
+                                        : Object
+                                            .entries(x)
+                                            .map(([k, v]) => `${k}: ${this.resolveValue(v, 1)}`));
+    }
+
     public async fn(msg: Message, { text, flags }: CommandInfo) {
         try {
-            msg.channel.send(
-                evaluate(
-                    text,
-                    Object.fromEntries(
-                        Object
-                            .entries(flags)
-                            .map(([k, v]) => [k, isNaN(+v) ? 0 : +v])
-                    )
-                ),
-                { code: true }
-            );
+            msg.channel.send(this.resolveValue(evaluate(
+                text,
+                Object.fromEntries(
+                    Object
+                        .entries(flags)
+                        .map(([k, v]) => [k, isNaN(+v) ? 0 : +v])
+                )
+            )), { code: true });
         } catch (e) {
             msg.channel.send(e.message, { code: true });
         }
