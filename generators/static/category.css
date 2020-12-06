@@ -1,0 +1,11 @@
+body {
+    background-color: #232323;
+    color: white;
+    font-family: Roboto, 'Segoe UI', Arial;
+    font-weight: 100;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}

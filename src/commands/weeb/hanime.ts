@@ -13,8 +13,9 @@ module.exports = class extends Command {
         type: 1,
         name: 'hanime',
         case: 'Hanime',
-        desc: 'Interact with hanime.tv.',
+        desc: 'Commands to interact with hanime.tv.',
         emoji: '🧚',
+        priority: 0,
         subcommands: [{
             name: 'search',
             aliases: ['find'],

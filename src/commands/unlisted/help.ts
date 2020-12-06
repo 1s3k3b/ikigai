@@ -1,38 +1,9 @@
 import { Command, CommandInfo } from 'aurora-djs';
-import { Message, Collection } from 'discord.js';
-import { CommandHelp, Help } from '../../types';
+import { Message } from 'discord.js';
+import { CommandHelp } from '../../types';
 import constants from '../../util/constants';
 
 type StrDict = Record<string, string>;
-
-const constCategories: StrDict = {
-    nsfw: '🔞',
-    weeb: '🇯🇵',
-    util: '🛠️',
-    fun: '😄',
-    text: '🇹',
-    image: '🖼️',
-    search: '🔍',
-};
-const constCategoryDescriptions: StrDict = {
-    nsfw: 'Regular NSFW commands.',
-    weeb: 'Weeb, and weeb NSFW commands.',
-    util: 'Utility commands.',
-    fun: 'Fun commands.',
-    text: 'Text related commands.',
-    image: 'Image manipulation commands.',
-    search: 'Search commands.',
-};
-
-const constCategoryCases: StrDict = {
-    nsfw: 'NSFW',
-    weeb: 'Weeb',
-    util: 'Util',
-    fun: 'Fun',
-    text: 'Text',
-    image: 'Image',
-    search: 'Search',
-};
 
 module.exports = class extends Command {
     public help = {
@@ -75,39 +46,7 @@ module.exports = class extends Command {
     }
 
     public async fn(msg: Message, { args: [x, sub] }: CommandInfo) {
-        const categories = constCategories;
-        const categoryDescriptions = constCategoryDescriptions;
-        const categoryCases = constCategoryCases;
-        const commands = <(CommandHelp & { name: string; aliases: string[]; })[]><unknown>(
-            <{
-                commands: Collection<string, {
-                    help: Help;
-                    name: string;
-                    aliases: string[];
-                }>;
-            }>msg.client
-        ).commands
-            .array()
-            .flatMap(x => {
-                if (!x.help.type) return [];
-                if (x.help.type === 1) {
-                    categories[x.name] = x.help.emoji;
-                    categoryDescriptions[x.name] = x.help.desc;
-                    categoryCases[x.name] = x.help.case;
-                    return x.help.subcommands.map(y => <CommandHelp>({
-                        ...y,
-                        aliases: [...y.aliases || [], y.name],
-                        type: 2,
-                        category: x.name,
-                        prefix: `${constants.CONFIG.PREFIX}${x.name} `,
-                    }));
-                }
-                return {
-                    ...x,
-                    ...x.help,
-                    prefix: constants.CONFIG.PREFIX,
-                };
-            });
+        const { commands, categories, categoryDescriptions, categoryCases, categoryPriorities } = msg.client.util.loadCommands(msg.client);
         x = x?.toLowerCase();
         const category = categories[x];
         let cmd = commands.find(y => y.aliases!.includes(x));
@@ -171,6 +110,7 @@ module.exports = class extends Command {
                 .addFields(
                     ...Object
                         .entries(categories)
+                        .sort(([a], [b]) => categoryPriorities[a] - categoryPriorities[b])
                         .map(([name, emoji]) => ({
                             name: `${emoji} ${categoryCases[name]} (${commands.filter(x => x.category === name).length})`,
                             value: categoryDescriptions[name],

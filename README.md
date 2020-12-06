@@ -1,9 +1,9 @@
 # Ikigai
 
 <a href="https://discord.gg/47H5v7v65R"><img src="https://img.shields.io/discord/784168554605445150?color=7289da&logo=discord&logoColor=white"></a>
-<a href="."><img src="https://david-dm.org/1s3k3b/ikigai.svg?maxAge=3600"></a>
+<img src="https://david-dm.org/1s3k3b/ikigai.svg?maxAge=3600">
 
-Ikigai is a Discord bot written in TypeScript, mainly focused on weeb commands, which allows you to interact with several sites and has other utility commands.
+[Ikigai](https://1s3k3b.github.io/discord/ikigai) is a Discord bot written in TypeScript, mainly focused on weeb commands, which allows you to interact with several sites and has other utility commands.
 
 ## Invite 
 
@@ -36,28 +36,28 @@ For showcase of SFW and main commands, see the [showcase section](#showcase).
 [laynH](https://github.com/laynH/Anime-Girls-Holding-Programming-Books) - anime girls holding programming books
 
 ## Showcase
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/mal anime.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/mal user.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/mal search.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/hanime video.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/hanime search.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/doujin.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/waifu.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/covid.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/animeme.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/urbandictionary search.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/funfact.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/osu.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/wouldyourather.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/trivia.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/willyoupressthebutton.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/reddit.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/elements.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/poll.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/bodypillow.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/triangle.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/asciitext.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/jisho.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/spotify song.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/spotify playlist.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/readme/pics/cancer.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/mal anime.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/mal user.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/mal search.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/hanime video.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/hanime search.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/doujin.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/waifu.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/covid.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/animeme.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/urbandictionary search.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/funfact.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/osu.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/wouldyourather.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/trivia.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/willyoupressthebutton.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/reddit.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/elements.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/poll.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/bodypillow.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/triangle.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/asciitext.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/jisho.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/spotify song.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/spotify playlist.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/cancer.png">

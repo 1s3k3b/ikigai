@@ -27,6 +27,7 @@ module.exports = class InfoCommand extends Command {
                 .addField('Ping', msg.client.ws.ping)
                 .addField('Invite', `[Click here](${await msg.client.generateInvite()})`)
                 .addField('Discord Server', '[Click here](https://discord.gg/47H5v7v65R)')
+                .addField('Website', `[Click here](https://1s3k3b.github.io/discord/ikigai)`)
                 .addField('Prefix', `\`${constants.CONFIG.PREFIX}\``)
                 .addField('Servers', msg.client.guilds.cache.size)
                 .addField('Users', msg.client.guilds.cache.reduce((a, g) => a + g.memberCount, 0))

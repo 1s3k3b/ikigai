@@ -5,7 +5,7 @@ import { readdirSync, statSync } from 'fs';
 import Table from 'ascii-table';
 import { Client as AGHPBClient } from 'aghpb-api';
 import { Client as HanimeClient, Video } from 'hanime-api';
-import { readme } from '../../readme';
+import generate from '../../generators';
 import Util from '../util/Util';
 import { Help } from '../types';
 import constants from '../util/constants';
@@ -69,7 +69,7 @@ export default class extends Client {
             ) t.addRow(...a);
             console.log(t.toString());
 
-            if (process.argv.includes('readme')) readme(this);
+            if (process.argv.includes('generate')) generate(this);
 
             const _this = this;
             const trending: Trending = {

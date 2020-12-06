@@ -10,6 +10,7 @@ module.exports = class extends Command {
         case: 'UrbanDictionary',
         emoji: '📚',
         desc: 'Look up specified or random definitions on UrbanDictionary.',
+        priority: 6,
         subcommands: [{
             name: 'random',
             aliases: ['rand'],

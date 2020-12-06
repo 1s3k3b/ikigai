@@ -1,11 +1,22 @@
-import { MessageEmbedOptions, Message, MessageOptions, ReactionCollector, GuildMember, Util as DUtil } from 'discord.js';
+import {
+    MessageEmbedOptions,
+    Message,
+    MessageOptions,
+    ReactionCollector,
+    GuildMember,
+    Util as DUtil,
+    Collection,
+    Client,
+} from 'discord.js';
 import fetch from 'node-fetch';
 import { findBestMatch } from 'string-similarity';
 import $ from 'cheerio';
 import Jimp from 'jimp';
 import constants from './constants';
-import { JishoWord, YouTubeSearchVideo } from '../types';
+import { CommandHelp, Help, JishoWord, YouTubeSearchVideo } from '../types';
 import MessageEmbed from '../structures/MessageEmbed';
+
+type Dict<T = string> = Record<string, T>;
 
 export default class Util {
     public static random<T>(a: T[]): T;
@@ -90,6 +101,82 @@ export default class Util {
     }
     public static embed(inline = false, bulletPoints = true, d?: MessageEmbedOptions) {
         return new MessageEmbed(inline, bulletPoints, d);
+    }
+    public static loadCommands(c: Client) {
+        const categories: Dict<string> = {
+            weeb: '🇯🇵',
+            util: '🛠️',
+            fun: '😄',
+            text: '🇹',
+            nsfw: '🔞',
+            image: '🖼️',
+            search: '🔍',
+        };
+        const categoryDescriptions: Dict = {
+            weeb: 'Weeb, and weeb NSFW commands.',
+            util: 'Utility commands.',
+            fun: 'Fun commands.',
+            text: 'Text related commands.',
+            nsfw: 'Regular NSFW commands.',
+            image: 'Image manipulation commands.',
+            search: 'Search commands.',
+        };
+        const categoryCases: Dict = {
+            weeb: 'Weeb',
+            util: 'Util',
+            fun: 'Fun',
+            text: 'Text',
+            nsfw: 'NSFW',
+            image: 'Image',
+            search: 'Search',
+        };
+        const categoryPriorities: Dict<number> = {
+            weeb: 2,
+            util: 3,
+            fun: 4,
+            text: 5,
+            nsfw: 7,
+            image: 9,
+            search: 11,
+        }; 
+
+        return {
+            commands: <(CommandHelp & { name: string; aliases: string[]; })[]><unknown>(
+                <{
+                    commands: Collection<string, {
+                        help: Help;
+                        name: string;
+                        aliases: string[];
+                    }>;
+                }>c
+            ).commands
+                .array()
+                .flatMap(x => {
+                    if (!x.help.type) return [];
+                    if (x.help.type === 1) {
+                        categories[x.name] = x.help.emoji;
+                        categoryDescriptions[x.name] = x.help.desc;
+                        categoryCases[x.name] = x.help.case;
+                        categoryPriorities[x.name] = x.help.priority;
+                        return x.help.subcommands.map(y => <CommandHelp>({
+                            ...y,
+                            aliases: [...y.aliases || [], y.name],
+                            type: 2,
+                            category: x.name,
+                            prefix: `${constants.CONFIG.PREFIX}${x.name} `,
+                        }));
+                    }
+                    return {
+                        ...x,
+                        ...x.help,
+                        prefix: constants.CONFIG.PREFIX,
+                    };
+                }),
+            categories,
+            categoryDescriptions,
+            categoryCases,
+            categoryPriorities,
+        };
     }
     public static paginate<T>(msg: Message, resend: boolean, arr: T[], cb: (x: T) => (string | MessageOptions)[], none?: (string | MessageOptions)[]) {
         const emojis = ['⬅️', '➡️'];

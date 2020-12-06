@@ -11,6 +11,7 @@ module.exports = class extends Command {
         case: 'Spotify',
         emoji: '🔊',
         desc: 'Commands to interact with Spotify.',
+        priority: 8,
         subcommands: [{
             name: 'playlist',
             desc: 'Get info about a playlist.',

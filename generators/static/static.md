@@ -1,9 +1,9 @@
 # Ikigai
 
 <a href="https://discord.gg/47H5v7v65R"><img src="https://img.shields.io/discord/784168554605445150?color=7289da&logo=discord&logoColor=white"></a>
-<a href="."><img src="https://david-dm.org/1s3k3b/ikigai.svg?maxAge=3600"></a>
+<img src="https://david-dm.org/1s3k3b/ikigai.svg?maxAge=3600">
 
-Ikigai is a Discord bot written in TypeScript, mainly focused on weeb commands, which allows you to interact with several sites and has other utility commands.
+[Ikigai](https://1s3k3b.github.io/discord/ikigai) is a Discord bot written in TypeScript, mainly focused on weeb commands, which allows you to interact with several sites and has other utility commands.
 
 ## Invite 
 

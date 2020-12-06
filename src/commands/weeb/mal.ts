@@ -13,6 +13,7 @@ module.exports = class extends Command {
         desc: `Commands to interact with [MyAnimeList](${constants.REST.MAL})`,
         case: 'MyAnimeList',
         emoji: '📰',
+        priority: 1,
         subcommands: [{
             name: 'anime',
             desc: 'Get information about an anime.',

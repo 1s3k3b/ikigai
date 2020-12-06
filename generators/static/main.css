@@ -1,0 +1,59 @@
+body {
+    font-family: Roboto, 'Segoe UI', Arial;
+    background-color: #232323;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, a, p {
+    color: white;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+h2, h3 {
+    margin-left: 5;
+}
+
+.category {
+    margin-left: 20;
+}
+
+.header {
+    background-color: #008cff;
+    padding-bottom: 15%;
+}
+
+button {
+    background-color: #fff700;
+    display: block;
+    margin-top: 10;
+    border: none;
+    width: 80;
+    height: 50;
+}
+
+.header button a {
+    color: #000000;
+}
+
+.header h1 {
+    padding-top: 10%;
+}
+
+.header h1, button {
+    margin-left: 50%;
+}
+
+.header p {
+    text-align: center;
+}
+
+code {
+    background-color: #ffffff;
+}
+
+code a {
+    padding: 3;
+    color: #000000;
+}

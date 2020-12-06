@@ -34,6 +34,7 @@ export type Help =
         case: string;
         emoji: string;
         desc: string;
+        priority: number;
         subcommands: Subcommand[];
     }
     | CommandHelp;

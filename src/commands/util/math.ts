@@ -42,7 +42,8 @@ module.exports = class extends Command {
                                 : typeof x === 'function'
                                     ? x.syntax
                                     : depth
-                                        ? `{ ${Object.entries(x).map(([k, v]) => `[${k}: ${this.resolveValue(v, 1)}]`).join(', ')} }`
+                                        ? `{ ${Object.entries(x).map(([k, v]) => `[${k}: ${this.resolveValue(v, 1)}]`)
+                                            .join(', ')} }`
                                         : Object
                                             .entries(x)
                                             .map(([k, v]) => `${k}: ${this.resolveValue(v, 1)}`));
