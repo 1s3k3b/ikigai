@@ -117,7 +117,12 @@ module.exports = class extends Command {
                         }))
                 ),
         });
-        const emojis: StrDict = Object.fromEntries(Object.entries(categories).map(x => x.reverse()));
+        const emojis: StrDict = Object.fromEntries(
+            Object
+                .entries(categories)
+                .sort(([a], [b]) => categoryPriorities[a] - categoryPriorities[b])
+                .map(x => x.reverse())
+        );
         sent
             .createReactionCollector((r, u) => !!emojis[r.emoji.name] && u.id === msg.author.id)
             .on('collect', async (r, u) => r.users.remove(u).catch(() => {}) && this.category(sent, r.emoji.name, categoryDescriptions, categoryCases, commands, emojis[r.emoji.name]));
