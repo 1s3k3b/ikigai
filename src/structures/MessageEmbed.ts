@@ -15,6 +15,10 @@ export default class extends MessageEmbed {
         );
         return this;
     }
+    public setDescription(s?: string | boolean) {
+        if (s) super.setDescription(s);
+        return this;
+    }
     public setThumbnail(s?: string) {
         if (s) super.setThumbnail(s);
         return this;

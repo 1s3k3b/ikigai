@@ -26,7 +26,7 @@ module.exports = class extends Command {
                 .addField('Name', em.name)
                 .addField('ID', em.id)
                 .addField('Created At', SnowflakeUtil.deconstruct(em.id).date.toDateString())
-                .setDescription(em.animated ? 'Animated' : undefined),
+                .setDescription(em.animated && 'Animated'),
             files: [msg.client.util.emojiURL(<{ id: string; animated: boolean; }>em)],
         });
     }
