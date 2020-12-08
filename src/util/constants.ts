@@ -24,6 +24,7 @@ export default <const>{
         FUNFACT: 'https://uselessfacts.jsph.pl/random.json?language=en',
         REPO: 'https://github.com/1s3k3b/ikigai',
         REPO_RAW: 'https://raw.githubusercontent.com/1s3k3b/ikigai/master/',
+        DBL: 'https://discordbotlist.com/api/v1/bots/',
         WAIFULIST: {
             SEARCH: 'https://mywaifulist.moe/api/waifu/search',
             WAIFU: 'https://mywaifulist.moe/api/waifu/',

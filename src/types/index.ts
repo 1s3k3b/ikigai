@@ -152,6 +152,29 @@ export interface YouTubeSearchVideo {
     viewCountText?: { simpleText: string; };
 }
 
+export interface DBLBot {
+    owner_id: string;
+    short_description: string;
+    long_description: string;
+    prefix: string;
+    website: string;
+    oauth_url: string;
+    server_invite: string;
+    tags: string[];
+    profile: {
+        username: string;
+        avatar: string;
+        discriminator: string;
+        flags: number;
+    };
+    slug: string;
+    created_at: number;
+    updated_at: number;
+    metrics: { invites: number; };
+    upvotes: number;
+    id: string;
+}
+
 // #endregion other
 
 // #region jikan

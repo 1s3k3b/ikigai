@@ -13,7 +13,7 @@ import { findBestMatch } from 'string-similarity';
 import $ from 'cheerio';
 import Jimp from 'jimp';
 import constants from './constants';
-import { CommandHelp, Help, JishoWord, YouTubeSearchVideo } from '../types';
+import { CommandHelp, DBLBot, Help, JishoWord, YouTubeSearchVideo } from '../types';
 import MessageEmbed from '../structures/MessageEmbed';
 
 type Dict<T = string> = Record<string, T>;
@@ -276,6 +276,14 @@ export default class Util {
                         .replace(/\\u\d+\w/g, x => eval(`'${x}'`))
                 ).id
             }`);
+    }
+    public static dbl(s: string): Promise<DBLBot> {
+        return fetch(constants.REST.DBL + s)
+            .then(d => d.json())
+            .then(d => {
+                if (d.message) throw new Error(d.message);
+                return d;
+            });
     }
     public static nekobot(t: string): Promise<string> {
         return fetch(`${constants.REST.NEKOBOT}${t}`)
