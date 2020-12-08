@@ -278,7 +278,7 @@ export default class Util {
             }`);
     }
     public static dbl(s: string): Promise<DBLBot> {
-        return fetch(constants.REST.DBL + s)
+        return fetch(constants.REST.DBL.API + s)
             .then(d => d.json())
             .then(d => {
                 if (d.message) throw new Error(d.message);
