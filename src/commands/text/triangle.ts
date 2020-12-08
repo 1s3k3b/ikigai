@@ -33,7 +33,7 @@ module.exports = class extends Command {
             return msg.channel.send(
                 '\u200b' + msg.client.util
                     .progress(msg.client.util.split(text.match(/\w/g) || [], 2))
-                    .map((s, i, a) => `${' '.repeat((a.length - i) * 6 - 6)}${s.map(x => `:regional_indicator_${x}:`).join('')}`)
+                    .map((s, i, a) => `${' '.repeat((a.length - i) * 6 - 6)}${s.map(x => `:regional_indicator_${`${x}`.toLowerCase()}:`).join('')}`)
                     .join('\n')
             );
         }

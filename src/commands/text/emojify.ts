@@ -29,7 +29,7 @@ module.exports = class extends Command {
         if (flags.filter) text = (text.match(new RegExp(`[a-z\\s${num ? '\\d' : ''}]`, 'gi')) || []).join('');
         msg.channel.send(msg.client.util.padZws(
             text
-                .replace(/[a-z]/gi, ':regional_indicator_$&:')
+                .replace(/[a-z]/gi, s => `:regional_indicator_${s.toLowerCase()}:`)
                 .replace(/\d/g, x => num ? `:${numbers[+x]}:` : x)
                 .replace(/\s+/g, '     '),
         ));
