@@ -45,7 +45,7 @@ For showcase of SFW and main commands, see the [showcase section](#showcase).
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/waifu.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/covid.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/animeme.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/urbandictionary search.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/urbandictionary.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/funfact.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/osu.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/wouldyourather.png">
