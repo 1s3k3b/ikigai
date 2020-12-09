@@ -25,7 +25,7 @@ config({ path: '.env' });
 
 export default class extends Client {
     public util = Util;
-    public aghpb = new AGHPBClient(`Bearer ${process.env.GH_TOKEN}`);
+    public aghpb = new AGHPBClient(`Bearer ${process.env.GH_TOKEN}`)
     public osu = new OsuClient(process.env.OSU_ID!, process.env.OSU_TOKEN!);
     public ud = new UDClient();
     public reddit = new RedditClient();
@@ -51,6 +51,8 @@ export default class extends Client {
             args: { flags: true },
             ws: { intents: Intents.ALL },
         });
+
+        this.aghpb.init();
 
         this.on('ready', async () => {
             const t = new Table('Info').setAlignCenter(1);

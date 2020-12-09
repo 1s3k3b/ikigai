@@ -36,7 +36,7 @@ module.exports = class extends Command {
     constructor() {
         super({
             name: 'aghpb',
-            aliases: ['animegirlsholdingprogrammingbooks'],
+            aliases: ['animegirlsholdingprogrammingbooks', 'aghb', 'agp', 'agpb'],
         });
     }
 
