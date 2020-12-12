@@ -55,9 +55,9 @@ export default class NhentaiClient {
                             .request(`${path}1`)
                             .then(s => +$('a.last', s)[0].attribs.href.match(/\d+/)![0])
                             .then(n => this.pageCount[name] = n);
-                            const results = [];
-                            for (let p = 1; p <= pages; p++) results.push(...await this[name](p));
-                            return results.filter(x => !x.href.startsWith(`/${name}/`));
+                        const results = [];
+                        for (let p = 1; p <= pages; p++) results.push(...await this[name](p));
+                        return results.filter(x => !x.href.startsWith(`/${name}/`));
                     },
                 },
             });
@@ -80,7 +80,8 @@ export default class NhentaiClient {
             .toArray()
             .map(a => ({
                 name: $(a.children[0]).text(),
-                count: +$(a.children[1]).text().replace('K', '000'),
+                count: +$(a.children[1]).text()
+                    .replace('K', '000'),
                 href: a.attribs.href,
                 fetch: () => this
                     .request(`${constants.REST.NHENTAI.BASE}${a.attribs.href}`)

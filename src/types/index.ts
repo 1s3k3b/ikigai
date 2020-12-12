@@ -451,7 +451,7 @@ export interface NhentaiSearch {
     id: string;
     img: string;
     name: string;
-} 
+}
 
 export interface NhentaiListing {
     name: string;

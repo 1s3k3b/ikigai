@@ -138,7 +138,7 @@ export default class Util {
             nsfw: 7,
             image: 8,
             search: 11,
-        }; 
+        };
 
         return {
             commands: <(CommandHelp & { name: string; aliases: string[]; })[]><unknown>(

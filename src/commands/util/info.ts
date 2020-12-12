@@ -36,7 +36,7 @@ module.exports = class InfoCommand extends Command {
                 .addField('Owner', (<User>(await msg.client.fetchApplication()).owner).tag)
                 .addField('Invite', `[Click here](${await msg.client.generateInvite()})`)
                 .addField('Discord Server', '[Click here](https://discord.gg/47H5v7v65R)')
-                .addField('Website', `[Click here](https://1s3k3b.github.io/discord/ikigai)`)
+                .addField('Website', '[Click here](https://1s3k3b.github.io/discord/ikigai)')
                 .addField('Bot Lists', `[DiscordBotList](https://discord.ly/ikigai)\n> ${dbl.metrics.invites.toLocaleString('en')} invites\n> ${dbl.upvotes.toLocaleString('en')} upvotes`)
                 .addField('Source Code', `[Click here](${constants.REST.REPO})`),
         });
