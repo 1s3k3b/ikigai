@@ -15,6 +15,7 @@ import RedditClient from '../structures/RedditClient';
 import JikanClient from '../structures/JikanClient';
 import SpotifyClient from '../structures/SpotifyClient';
 import WaifuClient from '../structures/WaifuClient';
+import NhentaiClient from '../structures/NhentaiClient';
 
 const pkg: {
     version: string;
@@ -33,6 +34,7 @@ export default class extends Client {
     public jikan = new JikanClient();
     public spotify = new SpotifyClient();
     public waifu = new WaifuClient();
+    public nhentai = new NhentaiClient();
     public commands!: Collection<string, Command & { help: Help; }>;
     constructor() {
         super({
@@ -53,6 +55,7 @@ export default class extends Client {
         });
 
         this.aghpb.init();
+        for (const s of <const>['allTags', 'allArtists', 'allParodies', 'allGroups']) this.nhentai[s]();
 
         this.on('ready', async () => {
             const t = new Table('Info').setAlignCenter(1);

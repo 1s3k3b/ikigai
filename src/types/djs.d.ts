@@ -9,6 +9,7 @@ import SpotifyClient from '../structures/SpotifyClient';
 import { Command } from 'aurora-djs';
 import { Help } from '.';
 import WaifuClient from '../structures/WaifuClient';
+import NhentaiClient from '../structures/NhentaiClient';
 
 declare module 'discord.js' {
     interface Client {
@@ -22,5 +23,6 @@ declare module 'discord.js' {
         jikan: JikanClient;
         spotify: SpotifyClient;
         waifu: WaifuClient;
+        nhentai: NhentaiClient;
     }
 }

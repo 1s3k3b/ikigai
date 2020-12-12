@@ -41,7 +41,7 @@ For showcase of SFW and main commands, see the [showcase section](#showcase).
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/mal search.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/hanime video.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/hanime search.png">
-<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/doujin.png">
+<img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/nhentai sauce.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/waifu.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/covid.png">
 <img src="https://raw.githubusercontent.com/1s3k3b/ikigai/master/generators/pics/animeme.png">

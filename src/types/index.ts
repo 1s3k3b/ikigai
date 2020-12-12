@@ -444,3 +444,20 @@ interface WaifuAnime {
 }
 
 // #endregion waifulist
+
+// #region nhentai
+
+export interface NhentaiSearch {
+    id: string;
+    img: string;
+    name: string;
+} 
+
+export interface NhentaiListing {
+    name: string;
+    count: number;
+    href: string;
+    fetch: () => Promise<NhentaiSearch[]>;
+}
+
+// #endregion nhentai

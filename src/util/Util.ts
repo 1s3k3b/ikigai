@@ -134,10 +134,10 @@ export default class Util {
             weeb: 2,
             util: 3,
             fun: 4,
-            text: 5,
-            nsfw: 6,
-            image: 7,
-            search: 10,
+            text: 6,
+            nsfw: 7,
+            image: 8,
+            search: 11,
         }; 
 
         return {
@@ -265,17 +265,6 @@ export default class Util {
             .then(d => d.text())
             .then(d => $('.image > a > img', d).toArray()
                 .map(x => x.attribs.src));
-    }
-    public static randomDoujin() {
-        return fetch(constants.REST.RANDOM_DOUJIN)
-            .then(d => d.text())
-            .then(d => `${
-                JSON.parse(
-                    d
-                        .match(/JSON\.parse\("(.+)"\)/)![1]
-                        .replace(/\\u\d+\w/g, x => eval(`'${x}'`))
-                ).id
-            }`);
     }
     public static dbl(s: string): Promise<DBLBot> {
         return fetch(constants.REST.DBL.API + s)
