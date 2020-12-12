@@ -13,6 +13,9 @@ module.exports = class extends Command {
         args: {
             '<text>': 'The term to search.',
         },
+        flags: {
+            el: 'The index of the element to view. Defaults to 1.',
+        },
     };
     constructor() {
         super({
@@ -21,7 +24,7 @@ module.exports = class extends Command {
         });
     }
 
-    public async fn(msg: Message, { text }: CommandInfo) {
+    public async fn(msg: Message, { text, flags }: CommandInfo) {
         if (!(<TextChannel>msg.channel).nsfw && msg.channel.type !== 'dm') return msg.channel.send('Some results might be NSFW. Please use this command in an NSFW channel or DMs instead.');
         const start = Date.now();
         const res = await msg.client.util.dakimakura(text);
@@ -41,6 +44,7 @@ module.exports = class extends Command {
                     .addField('Name', `[${x.name}](${x.url})`)
                     .setImage(x.img),
             }],
+            /^\d+$/.test(`${flags.el}`) ? +flags.el - 1 : 0,
         );
     }
 };

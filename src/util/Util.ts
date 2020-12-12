@@ -178,7 +178,7 @@ export default class Util {
             categoryPriorities,
         };
     }
-    public static paginate<T>(msg: Message, resend: boolean, arr: T[], cb: (x: T) => (string | MessageOptions)[], none?: (string | MessageOptions)[]) {
+    public static paginate<T>(msg: Message, resend: boolean, arr: T[], cb: (x: T) => (string | MessageOptions)[], baseI?: number, none?: (string | MessageOptions)[]) {
         const emojis = ['⬅️', '➡️'];
         let last: Message;
         let collector: ReactionCollector;
@@ -193,7 +193,7 @@ export default class Util {
                 .createReactionCollector((a, b) => emojis.includes(a.emoji.name) && b.id === msg.author.id)
                 .on('collect', (e, u) => (resend || e.users.remove(u).catch(() => {})) && fn(e.emoji.name === emojis[0] ? i - 1 : i + 1));
         };
-        fn(0);
+        fn(baseI || 0);
     }
     public static async getUser(msg: Message, text: string) {
         if (msg.mentions.users.size) return msg.mentions.users.first();

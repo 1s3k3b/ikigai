@@ -41,6 +41,7 @@ module.exports = class extends Command {
                     .setImage(x.data.url)
                     .setFooter(`${x.data.ups} 👍 (${x.data.upvote_ratio * 100}%)`),
             }],
+            0,
             ['Subreddit not found.'],
         );
     }

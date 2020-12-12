@@ -11,6 +11,9 @@ module.exports = class extends Command {
         args: {
             '[term]': 'The term to search for. Can be english or japanese.',
         },
+        flags: {
+            el: 'The index of the definition to view. Defaults to 1.',
+        },
     };
     constructor() {
         super({
@@ -19,7 +22,7 @@ module.exports = class extends Command {
         });
     }
 
-    public async fn(msg: Message, { text }: CommandInfo) {
+    public async fn(msg: Message, { text, flags }: CommandInfo) {
         const data = await msg.client.util.jisho(text);
         if (!data.length) return msg.channel.send('No results found.');
         msg.client.util.paginate(
@@ -52,6 +55,7 @@ module.exports = class extends Command {
                             .join('\n')
                     ),
             }],
+            /^\d+$/.test(`${flags.el}`) ? +flags.el - 1 : 0,
         );
     }
 };

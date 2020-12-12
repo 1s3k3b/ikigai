@@ -22,7 +22,8 @@ module.exports = class extends Command {
                 '[data]': 'The anime search term or ID. If not found or provided, a seasonal anime is picked.',
             },
             flags: {
-                'characters, chars, char': 'Whether to send a paginateable embed ',
+                'characters, chars, char': 'Whether to send a paginateable embed showing characters.',
+                el: 'The index of the character to view. Defaults to 1.',
             },
             examples: ['koe no katachi', '40839 --characters', ''],
         }, {
@@ -121,6 +122,7 @@ module.exports = class extends Command {
                             .addField('Anime', `[${res.title}](${res.url})\n${res.score} score\n#${res.rank.toLocaleString('en')} rank\n${res.episodes} episodes\n${res.duration} duration\nRated ${res.rating}\n${res.status}`)
                             .addField('Voice Actors', x.voice_actors.map(x => `[${x.name} (${x.language})](${x.url})`).join('\n')),
                     }],
+                    /^\d+$/.test(`${flags.el}`) ? +flags.el - 1 : 0,
                 );
             }
             return msg.channel.send({
@@ -230,6 +232,7 @@ module.exports = class extends Command {
                                     })),
                                 ),
                         }],
+                        0,
                         ['No anime found.'],
                 );
             }
@@ -268,6 +271,7 @@ module.exports = class extends Command {
                                     })),
                                 ),
                         }],
+                        0,
                         ['No manga found.'],
                 );
             }
