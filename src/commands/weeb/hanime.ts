@@ -94,8 +94,7 @@ module.exports = class extends Command {
             );
     }
 
-    private formatSearch(msg: Message, x: PartialVideo, nsfw: boolean) {
-        const name = `${nsfw ? `[${x.name}](${x.url})` : x.name}\n`;
+    private formatSearch(msg: Message, x: PartialVideo) {
         const info = [
             `${f(x.likes)} 👍`,
             `${f(x.dislikes)} 👎`,
@@ -104,20 +103,18 @@ module.exports = class extends Command {
             x.censored ? 'Censored' : 'Uncensored',
         ].join(' | ');
         return {
-            name: nsfw ? '\u200b' : name,
-            value: `${nsfw ? name : ''}${
-                nsfw
-                    ? msg.client.util.slice(
-                        x.description,
-                        100,
-                    ) + '\n'
-                    : ''
-            }${info}`,
+            name: '\u200b',
+            value: `[${x.name}](${x.url})\n${
+                msg.client.util.slice(
+                    x.description,
+                    100,
+                )
+            }\n${info}`,
         };
     }
 
     public async fn(msg: Message, { args: [type, ...args], flags }: CommandInfo) {
-        const nsfw = (<TextChannel>msg.channel).nsfw || msg.channel.type === 'dm';
+        if (!(<TextChannel>msg.channel).nsfw && msg.channel.type !== 'dm') return msg.channel.send('You need to be in an NSFW channel or DM to use this command.');
         const text = args.join(' ');
         const { subcommands } = <Help & { type: 1 }>this.help;
         type = subcommands.find(x =>
@@ -145,13 +142,12 @@ module.exports = class extends Command {
                         .setTitle('Search Results')
                         .setDescription(`${res.length} result${res.length > 1 ? 's' : ''} (${((end - start) / 1000).toFixed(2)} seconds)`)
                         .setColor('RANDOM')
-                        .addFields(a.map(x => this.formatSearch(msg, x, nsfw)))
-                        .setFooter(nsfw ? 'hanime.tv' : 'Use an NSFW channel to get further information.'),
+                        .addFields(a.map(x => this.formatSearch(msg, x)))
+                        .setFooter('hanime.tv'),
                 }],
             );
         }
         case 'video': {
-            if (!nsfw) return msg.channel.send('You must be in an NSFW channel or a DM to use this command.');
             const res = await this.resolveVideo(msg.client.hanime, text);
             return msg.channel.send({
                 embed: msg.client.util
@@ -186,7 +182,6 @@ ${res.franchise.videos.map(x => `> ${x.name}`).join('\n')}`)
             });
         }
         case 'tags': {
-            if (!nsfw) return msg.channel.send('You must be in an NSFW channel or a DM to use this command.');
             const tags = await msg.client.hanime.fetchTags();
             const { bestMatch } = findBestMatch(text, tags.map(x => x.name));
             if (bestMatch.rating > 0.5) {
@@ -209,7 +204,7 @@ ${res.franchise.videos.map(x => `> ${x.name}`).join('\n')}`)
                             .setDescription(`${f(tag.videos)} videos\n${tag.description}`)
                             .setThumbnail(tag.tallImage)
                             .setImage(tag.wideImage)
-                            .addFields(a.map(x => this.formatSearch(msg, x, nsfw))),
+                            .addFields(a.map(x => this.formatSearch(msg, x))),
                     }]
                 );
             }
@@ -234,7 +229,6 @@ ${res.franchise.videos.map(x => `> ${x.name}`).join('\n')}`)
             );
         }
         case 'brands': {
-            if (!nsfw) return msg.channel.send('You must be in an NSFW channel or a DM to use this command.');
             const brands = await msg.client.hanime.fetchBrands();
             const { bestMatch } = findBestMatch(text, brands.map(x => x.title));
             if (bestMatch.rating > 0.5) {
@@ -250,7 +244,7 @@ ${res.franchise.videos.map(x => `> ${x.name}`).join('\n')}`)
                             .setURL(`${constants.REST.HANIME.BRANDS}${brand.slug}`)
                             .setDescription(`${f(brand.uploads)} uploads`)
                             .setColor('RANDOM')
-                            .addFields(a.map(x => this.formatSearch(msg, x, nsfw))),
+                            .addFields(a.map(x => this.formatSearch(msg, x))),
                     }]
                 );
             }
@@ -284,7 +278,7 @@ ${res.franchise.videos.map(x => `> ${x.name}`).join('\n')}`)
                     .addFields(
                         res
                             .slice(0, 20)
-                            .map(x => this.formatSearch(msg, <PartialVideo><unknown>x.data, nsfw))
+                            .map(x => this.formatSearch(msg, <PartialVideo><unknown>x.data))
                     ),
             });
         }
