@@ -3,6 +3,8 @@ import { Message } from 'discord.js';
 import regex from 'emoji-regex';
 import { Help } from '../../types';
 
+const numbers = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
 module.exports = class extends Command {
     public help: Help = {
         type: 2,
@@ -33,7 +35,7 @@ module.exports = class extends Command {
             return msg.channel.send(
                 '\u200b' + msg.client.util
                     .progress(msg.client.util.split(text.match(/\w/g) || [], 2))
-                    .map((s, i, a) => `${' '.repeat((a.length - i) * 6 - 6)}${s.map(x => `:regional_indicator_${`${x}`.toLowerCase()}:`).join('')}`)
+                    .map((s, i, a) => `${' '.repeat((a.length - i) * 6 - 6)}${s.map(x => /\d/.test(<string>x) ? `:${numbers[+x]}:` : `:regional_indicator_${`${x}`.toLowerCase()}:`).join('')}`)
                     .join('\n')
             );
         }
