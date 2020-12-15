@@ -25,9 +25,9 @@ module.exports = class extends Command {
             flags: {
                 'noembed, noem': 'Whether to omit the embed from messages.',
                 noimg: 'Whether to omit images from messages.',
-                el: 'The index of the image to view. Defaults to 1.',
+                page: 'The index of the image to view. Defaults to 1.',
             },
-            examples: ['', '301232'],
+            examples: ['', '321974', '292283 --page=102', '321087 --noem'],
         }, {
             name: 'search',
             aliases: ['find'],
@@ -98,7 +98,7 @@ module.exports = class extends Command {
                     embed: flags.noem || flags.noembed ? undefined : embed.setImage(x),
                     files: flags.noem || flags.noembed ? [x] : undefined,
                 }],
-                /^\d+$/.test(`${flags.el}`) ? +flags.el - 1 : 0,
+                /^\d+$/.test(`${flags.page}`) ? +flags.page - 1 : 0,
             );
             return msg.channel.send({ embed });
         }
