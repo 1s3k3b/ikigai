@@ -4,6 +4,8 @@ import ms from 'ms';
 import { Help, SpotifyPlaylist } from '../../types';
 import constants from '../../util/constants';
 
+const searchRegex = /\?.+=.+(&.+=.+)*$/;
+
 module.exports = class extends Command {
     public help: Help = {
         type: 1,
@@ -60,7 +62,12 @@ module.exports = class extends Command {
         switch (type?.toLowerCase()) {
         case 'playlist': {
             const res = await msg.client.spotify
-                .fetchPlaylist(arg)
+                .fetchPlaylist(
+                    `${arg}`
+                        .replace(/^spotify:playlist:/, '')
+                        .replace(/^https?:\/\/open\.spotify\.com\/(embed\/)?playlist\//, '')
+                        .replace(searchRegex, '')
+                )
                 .catch(() => undefined);
             if (!res) return msg.channel.send('Playlist not found.');
             if (flags.stats) {
@@ -110,7 +117,12 @@ module.exports = class extends Command {
         }
         case 'user': {
             const res = await msg.client.spotify
-                .fetchUser(arg)
+                .fetchUser(
+                    `${arg}`
+                        .replace(/^spotify:user:/, '')
+                        .replace(/^https?:\/\/open\.spotify\.com\/user\//, '')
+                        .replace(searchRegex, '')
+                )
                 .catch(() => undefined);
             if (!res) return msg.channel.send('User not found.');
             if (flags.stats) {
@@ -179,7 +191,12 @@ module.exports = class extends Command {
             const getUser = (u: User) => (<{ syncID: string; } | undefined><unknown>u.presence.activities.find(x => x.type === 'LISTENING' && x.name === 'Spotify' && x.assets?.largeImage?.startsWith('spotify:')))?.syncID;
             const id = msg.mentions.users.first() ? getUser(msg.mentions.users.first()!) : arg || getUser(msg.author);
             const res = await msg.client.spotify
-                .fetchTrack(id!)
+                .fetchTrack(
+                    `${id}`
+                        .replace(/^spotify:track:/, '')
+                        .replace(/^https?:\/\/open\.spotify\.com\/track\//, '')
+                        .replace(searchRegex, '')
+                )
                 .catch(() => undefined);
             if (!res) return msg.channel.send('Invalid track or user.');
             return msg.channel.send({
