@@ -169,6 +169,7 @@ export default class Util {
                     return {
                         ...x,
                         ...x.help,
+                        args: x.help.args,
                         prefix: constants.CONFIG.PREFIX,
                     };
                 }),

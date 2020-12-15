@@ -85,7 +85,7 @@ module.exports = class extends Command {
                     Object
                         .entries(cmd.args || {})
                         .map(([x, y]) => `\`${x}\`: ${y}`)
-                        .join('\n')
+                        .join('\n') || 'None'
                 )
                 .addField(
                     'Flags',
