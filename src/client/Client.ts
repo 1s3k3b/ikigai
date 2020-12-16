@@ -99,7 +99,7 @@ export default class extends Client {
             activity: this.util.random([
                 ...constants.CONFIG.ACTIVITIES(this),
                 ...trending.data!
-                    .slice(0, 20)
+                    .slice(0, 10)
                     .map(v => ({
                         name: v.data.name,
                         type: <const>'WATCHING',
