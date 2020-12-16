@@ -38,7 +38,10 @@ module.exports = class InfoCommand extends Command {
                 .addField('Discord Server', '[Click here](https://discord.gg/47H5v7v65R)')
                 .addField('Website', '[Click here](https://1s3k3b.github.io/discord/ikigai)')
                 .addField('Bot Lists', `[DiscordBotList](https://discord.ly/ikigai)\n> ${dbl.metrics.invites.toLocaleString('en')} invites\n> ${dbl.upvotes.toLocaleString('en')} upvotes`)
-                .addField('Source Code', `[Click here](${constants.REST.REPO})`),
+                .addField(
+                    'Source Code',
+                    `[${await msg.client.github.fetchRepo(constants.REST.GITHUB.BOT_REPO).then(d => d.stargazers_count.toLocaleString('en'))} stars](${constants.REST.GITHUB.HTML_BASE}/${constants.REST.GITHUB.BOT_REPO})`
+                ),
         });
     }
 };

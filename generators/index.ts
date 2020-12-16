@@ -89,7 +89,7 @@ ${
                 .map(x => `${x.length === 1 ? '-' : '--'}${x}`)
                 .join(', ')
         }: ${v}</p>`).join('\n')}` : ''}
-        ${existsSync(`./generators/pics/${imgPath}.png`) ? `<img src="${constants.REST.REPO_RAW}generators/pics/${imgPath}.png">` : ''}
+        ${existsSync(`./generators/pics/${imgPath}.png`) ? `<img src="${constants.REST.GITHUB.BOT_REPO_RAW}generators/pics/${imgPath}.png">` : ''}
     </body>
 </html>`);
         }
@@ -129,7 +129,7 @@ const readme = (c: Client) => {
         `${readFileSync('./generators/static/static.md')}\n## Showcase\n${
             existing
                 .sort((a, b) => names.find(x => x.name + '.png' === a)!.readme! - names.find(x => x.name + '.png' === b)!.readme!)
-                .map(x => `<img src="${constants.REST.REPO_RAW}generators/pics/${x}">`)
+                .map(x => `<img src="${constants.REST.GITHUB.BOT_REPO_RAW}generators/pics/${x}">`)
                 .join('\n')
         }`
     );

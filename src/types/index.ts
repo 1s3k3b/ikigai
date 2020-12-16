@@ -461,3 +461,11 @@ export interface NhentaiListing {
 }
 
 // #endregion nhentai
+
+// #region github
+
+export interface GitHubRepo {
+    stargazers_count: number;
+}
+
+// #endregion github

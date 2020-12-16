@@ -6,10 +6,11 @@ import UDClient from '../structures/UDClient';
 import RedditClient from '../structures/RedditClient';
 import JikanClient from '../structures/JikanClient';
 import SpotifyClient from '../structures/SpotifyClient';
-import { Command } from 'aurora-djs';
-import { Help } from '.';
 import WaifuClient from '../structures/WaifuClient';
 import NhentaiClient from '../structures/NhentaiClient';
+import GitHubClient from '../structures/GitHubClient';
+import { Command } from 'aurora-djs';
+import { Help } from '.';
 
 declare module 'discord.js' {
     interface Client {
@@ -24,5 +25,6 @@ declare module 'discord.js' {
         spotify: SpotifyClient;
         waifu: WaifuClient;
         nhentai: NhentaiClient;
+        github: GitHubClient;
     }
 }

@@ -16,6 +16,7 @@ import JikanClient from '../structures/JikanClient';
 import SpotifyClient from '../structures/SpotifyClient';
 import WaifuClient from '../structures/WaifuClient';
 import NhentaiClient from '../structures/NhentaiClient';
+import GitHubClient from '../structures/GitHubClient';
 
 const pkg: {
     version: string;
@@ -26,7 +27,7 @@ config({ path: '.env' });
 
 export default class extends Client {
     public util = Util;
-    public aghpb = new AGHPBClient(`Bearer ${process.env.GH_TOKEN}`)
+    public aghpb = new AGHPBClient(`Bearer ${process.env.GH_TOKEN}`);
     public osu = new OsuClient(process.env.OSU_ID!, process.env.OSU_TOKEN!);
     public ud = new UDClient();
     public reddit = new RedditClient();
@@ -35,6 +36,7 @@ export default class extends Client {
     public spotify = new SpotifyClient();
     public waifu = new WaifuClient();
     public nhentai = new NhentaiClient();
+    public github = new GitHubClient(`Bearer ${process.env.GH_TOKEN}`);
     public commands!: Collection<string, Command & { help: Help; }>;
     constructor() {
         super({
@@ -100,7 +102,7 @@ export default class extends Client {
                     .slice(0, 20)
                     .map(v => ({
                         name: v.data.name,
-                        type: 'WATCHING',
+                        type: <const>'WATCHING',
                     })),
             ]),
         });
