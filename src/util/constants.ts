@@ -20,6 +20,7 @@ export default <const>{
         COVID: 'https://disease.sh/v3/covid-19/',
         QR: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=',
         FUNFACT: 'https://uselessfacts.jsph.pl/random.json?language=en',
+        SOUNDCLOUD: 'https://soundcloud.com',
         GITHUB: {
             HTML_BASE: 'https://github.com',
             BOT_REPO: '1s3k3b/ikigai',

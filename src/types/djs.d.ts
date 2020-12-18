@@ -1,6 +1,7 @@
 import IkigaiUtil from '../util/Util';
 import { Client as AGHPBClient } from 'aghpb-api';
 import { Client as HanimeClient } from 'hanime-api';
+import { Client as SoundCloudClient } from 'soundcloud-scraper';
 import OsuClient from '../structures/OsuClient';
 import UDClient from '../structures/UDClient';
 import RedditClient from '../structures/RedditClient';
@@ -26,5 +27,6 @@ declare module 'discord.js' {
         waifu: WaifuClient;
         nhentai: NhentaiClient;
         github: GitHubClient;
+        soundcloud: SoundCloudClient;
     }
 }

@@ -11,7 +11,7 @@ module.exports = class extends Command {
         case: 'AGHPB',
         emoji: '📚',
         desc: `Get images of [anime girls holding programming books](${constants.REST.GITHUB.HTML_BASE}/${Constants.REPO_PATH}).`,
-        priority: 10,
+        priority: 11,
         subcommands: [{
             name: 'random',
             aliases: ['rand'],

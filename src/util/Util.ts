@@ -137,7 +137,7 @@ export default class Util {
             text: 6,
             nsfw: 7,
             image: 8,
-            search: 11,
+            search: 12,
         };
 
         return {

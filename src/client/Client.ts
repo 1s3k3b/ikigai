@@ -5,6 +5,7 @@ import { readdirSync, statSync } from 'fs';
 import Table from 'ascii-table';
 import { Client as AGHPBClient } from 'aghpb-api';
 import { Client as HanimeClient, Video } from 'hanime-api';
+import { Client as SCClient } from 'soundcloud-scraper';
 import generate from '../../generators';
 import Util from '../util/Util';
 import { Help } from '../types';
@@ -37,6 +38,7 @@ export default class extends Client {
     public waifu = new WaifuClient();
     public nhentai = new NhentaiClient();
     public github = new GitHubClient(`Bearer ${process.env.GH_TOKEN}`);
+    public soundcloud = new SCClient();
     public commands!: Collection<string, Command & { help: Help; }>;
     constructor() {
         super({
