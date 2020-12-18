@@ -21,6 +21,12 @@ export default <const>{
         QR: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=',
         FUNFACT: 'https://uselessfacts.jsph.pl/random.json?language=en',
         SOUNDCLOUD: 'https://soundcloud.com',
+        TOP_GG: {
+            POST: 'https://top.gg/api/bots/stats',
+            SEARCH: 'https://top.gg/api/search?type=bot&q=',
+            BOT: 'https://top.gg/api/bots/',
+            HTML_BOT: 'https://top.gg/bot',
+        },
         GITHUB: {
             HTML_BASE: 'https://github.com',
             BOT_REPO: '1s3k3b/ikigai',
@@ -96,6 +102,7 @@ export default <const>{
     CONFIG: {
         PREFIX: 'i!',
         STATUS_INTERVAL: 60000,
+        TOP_GG_POST_INTERVAL: 1800000,
         OWNER: '576083686055739394',
         ACTIVITIES: (client: Client) => <const>[
             {

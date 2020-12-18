@@ -18,7 +18,9 @@ import SpotifyClient from '../structures/SpotifyClient';
 import WaifuClient from '../structures/WaifuClient';
 import NhentaiClient from '../structures/NhentaiClient';
 import GitHubClient from '../structures/GitHubClient';
+import TopGGClient from '../structures/TopGGClient';
 
+const DEV = process.argv.includes('dev');
 const pkg: {
     version: string;
     dependencies: Record<string, string>,
@@ -39,6 +41,7 @@ export default class extends Client {
     public nhentai = new NhentaiClient();
     public github = new GitHubClient(`Bearer ${process.env.GH_TOKEN}`);
     public soundcloud = new SCClient();
+    public topgg = new TopGGClient(process.env.TOP_GG_TOKEN!, this);
     public commands!: Collection<string, Command & { help: Help; }>;
     constructor() {
         super({
@@ -51,7 +54,7 @@ export default class extends Client {
                         : p
                 ),
             owner: constants.CONFIG.OWNER,
-            token: process.argv.includes('dev') ? process.env.DEV_DAPI_TOKEN! : process.env.PROD_DAPI_TOKEN!,
+            token: DEV ? process.env.DEV_DAPI_TOKEN! : process.env.PROD_DAPI_TOKEN!,
             ignoreDMs: false,
             ignoreBots: true,
             args: { flags: true },
@@ -91,6 +94,10 @@ export default class extends Client {
             this.util.setImmediateInterval(
                 () => this.setActivity(trending),
                 constants.CONFIG.STATUS_INTERVAL,
+            );
+            if (!DEV) this.util.setImmediateInterval(
+                () => this.topgg.post(),
+                constants.CONFIG.TOP_GG_POST_INTERVAL,
             );
         });
     }

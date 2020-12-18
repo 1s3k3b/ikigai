@@ -1,7 +1,9 @@
-import IkigaiUtil from '../util/Util';
 import { Client as AGHPBClient } from 'aghpb-api';
 import { Client as HanimeClient } from 'hanime-api';
 import { Client as SoundCloudClient } from 'soundcloud-scraper';
+import { Command } from 'aurora-djs';
+import { Help } from '.';
+import IkigaiUtil from '../util/Util';
 import OsuClient from '../structures/OsuClient';
 import UDClient from '../structures/UDClient';
 import RedditClient from '../structures/RedditClient';
@@ -10,8 +12,8 @@ import SpotifyClient from '../structures/SpotifyClient';
 import WaifuClient from '../structures/WaifuClient';
 import NhentaiClient from '../structures/NhentaiClient';
 import GitHubClient from '../structures/GitHubClient';
-import { Command } from 'aurora-djs';
-import { Help } from '.';
+import TopGGClient from '../structures/TopGGClient';
+
 
 declare module 'discord.js' {
     interface Client {
@@ -28,5 +30,6 @@ declare module 'discord.js' {
         nhentai: NhentaiClient;
         github: GitHubClient;
         soundcloud: SoundCloudClient;
+        topgg: TopGGClient;
     }
 }

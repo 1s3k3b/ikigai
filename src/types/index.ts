@@ -469,3 +469,29 @@ export interface GitHubRepo {
 }
 
 // #endregion github
+
+// #region topgg
+
+export interface TopGGSearch {
+    results: Record<'id' | 'name' | 'avatar', string>[];
+}
+
+export interface TopGGBot {
+    invite: string;
+    website: string;
+    support: string;
+    github: string;
+    shortdesc: string;
+    prefix: string;
+    clientid: string;
+    id: string;
+    date: string;
+    guilds: any[];
+    shards: any[];
+    monthlyPoints: number;
+    points: number;
+    owners: string[];
+    tags: string[];
+}
+
+// #endregion topgg
