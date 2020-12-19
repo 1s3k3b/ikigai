@@ -1,8 +1,6 @@
 import { Command } from 'aurora-djs';
 import { Message, User } from 'discord.js';
 import pms from 'pretty-ms';
-import * as moment from 'moment';
-import 'moment-duration-format';
 import { Help } from '../../types';
 import constants from '../../util/constants';
 
