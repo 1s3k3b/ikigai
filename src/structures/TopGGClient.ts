@@ -17,6 +17,7 @@ export default class {
                 body: body && JSON.stringify(body),
                 headers: {
                     Authorization: this.token,
+                    'Content-Type': 'application/json',
                 },
             },
         ).then(d => d.json());
