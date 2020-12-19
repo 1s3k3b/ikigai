@@ -36,10 +36,10 @@ module.exports = class extends Command {
                 .embed()
                 .setTitle(user.username)
                 .setColor('RANDOM')
-                .setURL(`${constants.REST.TOP_GG.HTML_BOT}/${res.id}`)
+                .setURL(`${constants.REST.TOP_GG.HTML_BOT}${res.id}`)
                 .setThumbnail(user.displayAvatarURL({ size: 2048 }))
                 .setDescription(res.shortdesc)
-                .addField('Stats', `Votes: ${f(stats[0])}\nServers: ${f(stats[1].server_count || 0)}\nShards: ${f(stats[1].shard_count || 0)}\nPoints: ${f(res.points)} (monthly: ${f(res.monthlyPoints)})`)
+                .addField('Stats', `Votes: ${stats[0]}\nServers: ${f(stats[1].server_count || 0)}\nShards: ${f(stats[1].shard_count || 0)}\nPoints: ${f(res.points)} (monthly: ${f(res.monthlyPoints)})`)
                 .addField('Data', `ID: ${res.id}\nClient ID: ${res.clientid}\nPrefix: \`${res.prefix}\`\nApproved at ${new Date(res.date).toDateString()}`)
                 .addField(
                     'Sites',

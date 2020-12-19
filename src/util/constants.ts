@@ -25,7 +25,7 @@ export default <const>{
             POST: 'https://top.gg/api/bots/stats',
             SEARCH: 'https://top.gg/api/search?type=bot&q=',
             BOT: 'https://top.gg/api/bots/',
-            HTML_BOT: 'https://top.gg/bot',
+            HTML_BOT: 'https://top.gg/bot/',
         },
         GITHUB: {
             HTML_BASE: 'https://github.com',

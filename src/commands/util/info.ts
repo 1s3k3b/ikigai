@@ -40,7 +40,7 @@ module.exports = class InfoCommand extends Command {
                 .addField('Invite', `[Click here](${await msg.client.generateInvite()})`)
                 .addField('Discord Server', '[Click here](https://discord.gg/47H5v7v65R)')
                 .addField('Website', '[Click here](https://1s3k3b.github.io/discord/ikigai)')
-                .addField('Bot Lists', `[top.gg](https://top.gg/bot/607498384718430208)\n> ${f(topgg[1].server_count || 0)} servers\n> ${f(topgg[0])} upvotes\n[DiscordBotList](https://discord.ly/ikigai)\n> ${f(dbl.metrics.invites)} invites\n> ${f(dbl.upvotes)} upvotes`)
+                .addField('Bot Lists', `[top.gg](https://top.gg/bot/607498384718430208)\n> ${topgg[0]} upvotes\n[DiscordBotList](https://discord.ly/ikigai)\n> ${f(dbl.metrics.invites)} invites\n> ${f(dbl.upvotes)} upvotes`)
                 .addField(
                     'Source Code',
                     `[${await msg.client.github.fetchRepo(constants.REST.GITHUB.BOT_REPO).then(d => f(d.stargazers_count))} stars](${constants.REST.GITHUB.HTML_BASE}/${constants.REST.GITHUB.BOT_REPO})`

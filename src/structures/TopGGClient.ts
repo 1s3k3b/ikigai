@@ -41,7 +41,7 @@ export default class {
         return Promise.all([
             fetch(`${constants.REST.TOP_GG.HTML_BOT}${id}`)
                 .then(d => d.text())
-                .then(d => +$($('.entity-header__vote-count.entity-header__metadata-element > b', d)).text()),
+                .then(d => $($('.entity-header__vote-count > b', d)[0]).text()),
             this.request<Record<'server_count' | 'shard_count', number>>(`${constants.REST.TOP_GG.BOT}${id}/stats`),
         ]);
     }
