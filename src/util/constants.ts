@@ -26,6 +26,7 @@ export default <const>{
             SEARCH: 'https://top.gg/api/search?type=bot&q=',
             BOT: 'https://top.gg/api/bots/',
             HTML_BOT: 'https://top.gg/bot/',
+            VOTED: 'https://top.gg/api/bots/check?userId=',
         },
         GITHUB: {
             HTML_BASE: 'https://github.com',
@@ -104,9 +105,13 @@ export default <const>{
         STATUS_INTERVAL: 60000,
         TOP_GG_POST_INTERVAL: 1800000,
         OWNER: '576083686055739394',
+        CLIENT: '',
         ACTIVITIES: (client: Client) => <const>[
             {
                 name: `${module.exports.default.CONFIG.PREFIX}help`,
+            },
+            {
+                name: `${module.exports.default.CONFIG.PREFIX}vote`,
             },
             {
                 name: `${client.guilds.cache.size} servers | ${

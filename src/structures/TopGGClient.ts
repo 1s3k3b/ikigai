@@ -29,8 +29,13 @@ export default class {
             'POST',
         );
     }
+    public voted(id: string) {
+        return this
+            .request<{ voted: number; }>(constants.REST.TOP_GG.VOTED + id)
+            .then(d => !!d.voted);
+    }
     public search(s: string) {
-        return this.request<TopGGSearch>(`${constants.REST.TOP_GG.SEARCH}${encodeURIComponent(s)}`);
+        return this.request<TopGGSearch>(constants.REST.TOP_GG.SEARCH + encodeURIComponent(s));
     }
     public info(id: string) {
         return <Promise<TopGGBot | undefined>>this
@@ -39,7 +44,7 @@ export default class {
     }
     public stats(id: string) {
         return Promise.all([
-            fetch(`${constants.REST.TOP_GG.HTML_BOT}${id}`)
+            fetch(constants.REST.TOP_GG.HTML_BOT + id)
                 .then(d => d.text())
                 .then(d => $($('.entity-header__vote-count > b', d)[0]).text()),
             this.request<Record<'server_count' | 'shard_count', number>>(`${constants.REST.TOP_GG.BOT}${id}/stats`),
