@@ -43,11 +43,6 @@ export default class {
             .then(d => d.id && d);
     }
     public stats(id: string) {
-        return Promise.all([
-            fetch(constants.REST.TOP_GG.HTML_BOT + id)
-                .then(d => d.text())
-                .then(d => $($('.entity-header__vote-count > b', d)[0]).text()),
-            this.request<Record<'server_count' | 'shard_count', number>>(`${constants.REST.TOP_GG.BOT}${id}/stats`),
-        ]);
+        return this.request<Record<'server_count' | 'shard_count', number>>(`${constants.REST.TOP_GG.BOT}${id}/stats`);
     }
 }
