@@ -85,7 +85,7 @@ module.exports = class extends Command {
                     .setThumbnail(res.thumbnail)
                     .setDescription(res.description.slice(0, 2048))
                     .setAuthor('', res.author.avatarURL)
-                    .addField('Song', `[${res.title}](${res.url})\nDuration: ${pms(res.duration)}\nGenre: ${res.genre}\nLikes: ${f(+res.likes)}\nPlays: ${f(+res.playCount)}\nPublished at ${res.publishedAt.toDateString()}`)
+                    .addField('Song', `[${res.title}](${res.url})\nDuration: ${pms(res.duration, { secondsDecimalDigits: 0 })}\nGenre: ${res.genre}\nLikes: ${f(+res.likes)}\nPlays: ${f(+res.playCount)}\nPublished at ${res.publishedAt.toDateString()}`)
                     .addField('Author', `[${res.author.name}](${res.author.url})\nFollowers: ${f(res.author.followers)}`),
             });
         }
@@ -210,7 +210,7 @@ module.exports = class extends Command {
                     .addFields(
                         msg.client.util
                             .split(
-                                res.tracks.map(x => `[${x.title}](${x.url}) (${x.genre}, ${x.publishedAt.toDateString()}, ${pms(x.duration)})`),
+                                res.tracks.map(x => `[${x.title}](${x.url}) (${x.genre}, ${x.publishedAt.toDateString()}, ${pms(x.duration, { secondsDecimalDigits: 0 })})`),
                                 0,
                                 (a, b) => [...a, b].join('\n').length > 1024,
                             )

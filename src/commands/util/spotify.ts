@@ -1,6 +1,6 @@
 import { Command, CommandInfo } from 'aurora-djs';
 import { Message, User } from 'discord.js';
-import ms from 'ms';
+import pms from 'pretty-ms';
 import { Help, SpotifyPlaylist } from '../../types';
 import constants from '../../util/constants';
 
@@ -204,7 +204,7 @@ module.exports = class extends Command {
                     .embed()
                     .setTitle('Spotify Track')
                     .setColor('#1DB954')
-                    .addField('Track', `[${res.name}](${res.external_urls.spotify})\nDuration: ${ms(res.duration_ms)}`)
+                    .addField('Track', `[${res.name}](${res.external_urls.spotify})\nDuration: ${pms(res.duration_ms, { secondsDecimalDigits: 0 })}`)
                     .addField('Artists', res.artists.map(x => `[${x.name}](${x.external_urls.spotify})`).join('\n'))
                     .addField('Album', `[${res.album.name}](${res.album.external_urls.spotify})
 Artists: ${res.album.artists.map(x => `[${x.name}](${x.external_urls.spotify})`).join(', ')}

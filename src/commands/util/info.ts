@@ -1,5 +1,6 @@
 import { Command } from 'aurora-djs';
 import { Message, User } from 'discord.js';
+import pms from 'pretty-ms';
 import * as moment from 'moment';
 import 'moment-duration-format';
 import { Help } from '../../types';
@@ -29,12 +30,12 @@ module.exports = class InfoCommand extends Command {
                 .setTitle('Info')
                 .setColor('RANDOM')
                 .addField('Prefix', `\`${constants.CONFIG.PREFIX}\``)
-                .addField('Ping', `${f(msg.client.ws.ping)}ms`)
+                .addField('Ping', pms(msg.client.ws.ping, { secondsDecimalDigits: 0 }))
                 .addField('Servers', msg.client.guilds.cache.size)
                 .addField('Users', msg.client.guilds.cache.reduce((a, g) => a + g.memberCount, 0))
                 .addField('Channels', msg.client.channels.cache.size)
                 .addField('Commands', msg.client.commands.size)
-                .addField('Uptime', moment.duration(msg.client.uptime || 0).format('d[d ]h[h ]m[m ]s[s]'))
+                .addField('Uptime', pms(msg.client.uptime || 0, { secondsDecimalDigits: 0 }))
                 .addField('Memory Usage', `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`)
                 .addField('Owner', (<User>(await msg.client.fetchApplication()).owner).tag)
                 .addField('Invite', `[Click here](${await msg.client.generateInvite()})`)
