@@ -105,7 +105,9 @@ export default <const>{
         STATUS_INTERVAL: 60000,
         TOP_GG_POST_INTERVAL: 1800000,
         OWNER: '576083686055739394',
-        CLIENT: '',
+        CLIENT: '607498384718430208',
+        SERVER: '784168554605445150',
+        SERVER_INVITE: '47H5v7v65R',
         ACTIVITIES: (client: Client) => <const>[
             {
                 name: `${module.exports.default.CONFIG.PREFIX}help`,

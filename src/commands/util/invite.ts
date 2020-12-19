@@ -1,6 +1,7 @@
 import { Command, CommandInfo } from 'aurora-djs';
 import { Message } from 'discord.js';
 import { Help } from '../../types';
+import constants from '../../util/constants';
 
 const f = (n: number) => n.toLocaleString('en');
 
@@ -12,7 +13,7 @@ module.exports = class extends Command {
         args: {
             '<invite>': 'The invite link or code.',
         },
-        examples: ['https://discord.gg/47H5v7v65R', '47H5v7v65R'],
+        examples: ['https://discord.gg/' + constants.CONFIG.SERVER_INVITE, constants.CONFIG.SERVER_INVITE],
     };
     constructor() {
         super({

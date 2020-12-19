@@ -27,9 +27,9 @@ const website = ({ categories, categoryDescriptions, categoryCases, categoryPrio
         <div class="header">
             <h1>Ikigai</h1>
             <p>A Discord bot mainly focused on weeb, util, and fun commands.</p>
-            <button><a href="https://discord.com/api/oauth2/authorize?client_id=607498384718430208&permissions=0&scope=bot">Invite Ikigai</a></button>
-            <button><a href="https://discord.gg/47H5v7v65R">Support server</a></button>
-            <button><a href=" https://github.com/1s3k3b/ikigai">Source code</a></button>
+            <button><a href="https://discord.com/api/oauth2/authorize?client_id=${constants.CONFIG.CLIENT}&permissions=0&scope=bot">Invite Ikigai</a></button>
+            <button><a href="https://discord.gg/${constants.CONFIG.SERVER_INVITE}">Support server</a></button>
+            <button><a href="${constants.REST.GITHUB.HTML_BASE}/${constants.REST.GITHUB.BOT_REPO}">Source code</a></button>
         </div>
         <h2>Categories</h2>
 ${
@@ -126,7 +126,19 @@ const readme = (c: Client) => {
     console.log(t.toString());
     writeFileSync(
         './README.md',
-        `${readFileSync('./generators/static/static.md')}\n## Showcase\n${
+        `${
+            readFileSync('./generators/static/static.md', 'utf8')
+                .replace(
+                    /\{([^}.]+)\.([^}.]+)(?:\.([^}.]+))?\}/g,
+                    (_, a, b, c) => {
+                        const prop = Object.getOwnPropertyDescriptor(
+                            Object.getOwnPropertyDescriptor(constants, a)!.value,
+                            b,
+                        )!.value;
+                        return c ? Object.getOwnPropertyDescriptor(prop, c)!.value : prop;
+                    },
+                )
+        }\n## Showcase\n${
             existing
                 .sort((a, b) => names.find(x => x.name + '.png' === a)!.readme! - names.find(x => x.name + '.png' === b)!.readme!)
                 .map(x => `<img src="${constants.REST.GITHUB.BOT_REPO_RAW}generators/pics/${x}">`)

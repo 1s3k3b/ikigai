@@ -1,15 +1,15 @@
 # Ikigai
 
-<a href="https://discord.gg/47H5v7v65R"><img src="https://img.shields.io/discord/784168554605445150?color=7289da&logo=discord&logoColor=white"></a>
-<img src="https://david-dm.org/1s3k3b/ikigai.svg?maxAge=3600">
-<a href="https://top.gg/bot/607498384718430208"><img src="https://top.gg/api/widget/607498384718430208.svg"/></a>
+<a href="https://discord.gg/{CONFIG.SERVER_INVITE}"><img src="https://img.shields.io/discord/{CONFIG.SERVER}?color=7289da&logo=discord&logoColor=white"></a>
+<img src="https://david-dm.org/{REST.GITHUB.BOT_REPO}.svg?maxAge=3600">
+<a href="https://top.gg/bot/{CONFIG.CLIENT}"><img src="https://top.gg/api/widget/{CONFIG.CLIENT}.svg"/></a>
 
 [Ikigai](https://1s3k3b.github.io/discord/ikigai) is a Discord bot written in TypeScript, mainly focused on weeb commands, which allows you to interact with several sites and has other utility commands.
 
 ## Invite 
 
 The source code is only public for inspiration and education purposes, I would recommend against running your own instance of the bot.<br>
-Invite it to your server instead: [Invite Link](https://discord.com/api/oauth2/authorize?client_id=607498384718430208&permissions=0&scope=bot)
+Invite it to your server instead: [Invite Link](https://discord.com/api/oauth2/authorize?client_id={CONFIG.CLIENT}&permissions=0&scope=bot)
 
 ## Usage
 

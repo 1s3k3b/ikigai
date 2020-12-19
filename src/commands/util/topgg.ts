@@ -27,7 +27,7 @@ module.exports = class extends Command {
             .then(d =>
                 d || msg.client.topgg
                     .search(text)
-                    .then(d => msg.client.topgg.info(d.results?.[0]?.id || '607498384718430208'))
+                    .then(d => msg.client.topgg.info(d.results?.[0]?.id || constants.CONFIG.CLIENT))
             ))!;
         const user = await msg.client.users.fetch(res.clientid);
         const stats = await msg.client.topgg.stats(res.id);
