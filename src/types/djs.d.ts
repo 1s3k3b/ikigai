@@ -18,6 +18,7 @@ import TopGGClient from '../structures/TopGGClient';
 declare module 'discord.js' {
     interface Client {
         commands: Collection<string, Command & { help: Help }>;
+        members: number;
         util: typeof IkigaiUtil;
         aghpb: AGHPBClient;
         osu: OsuClient;

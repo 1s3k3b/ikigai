@@ -72,7 +72,7 @@ export default class extends Client {
                     ['Dependencies', Object.keys(pkg.dependencies).length],
                     ['Dev Dependencies', Object.keys(pkg.devDependencies).length],
                     ['Servers', this.guilds.cache.size],
-                    ['Members', this.guilds.cache.reduce((a, b) => a + (b.memberCount || 0), 0)],
+                    ['Members', this.members],
                     ['Channels', this.channels.cache.size],
                     ['Commands', this.commands.size],
                     ['Client', this.user!.tag],
@@ -100,6 +100,10 @@ export default class extends Client {
                 constants.CONFIG.TOP_GG_POST_INTERVAL,
             );
         });
+    }
+
+    public get members() {
+        return this.guilds.cache.reduce((a, b) => a + (b.memberCount || 0), 0);
     }
 
     public async setActivity(trending: Trending) {

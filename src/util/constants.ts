@@ -116,9 +116,7 @@ export default <const>{
                 name: `${module.exports.default.CONFIG.PREFIX}vote`,
             },
             {
-                name: `${client.guilds.cache.size} servers | ${
-                    client.guilds.cache.reduce((a, b) => a + (b.memberCount || 0), 0) || 0
-                } users`,
+                name: `${client.guilds.cache.size} servers | ${client.members} users`,
                 type: 'WATCHING',
             },
             {
