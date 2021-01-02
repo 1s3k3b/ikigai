@@ -11,7 +11,7 @@ module.exports = class extends Command {
         name: 'nhentai',
         desc: 'Commands to interact with nhentai.net.',
         case: 'Nhentai',
-        emoji: '🇳',
+        emoji: constants.EMOJIS.NHENTAI,
         priority: 6,
         subcommands: [{
             name: 'sauce',

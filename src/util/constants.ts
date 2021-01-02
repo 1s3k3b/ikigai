@@ -107,6 +107,9 @@ export default <const>{
             ISSUES: '<:issue:792514319527051294>',
             ICON: '<:gh:795002783634948116>',
         },
+        HANIME: '<:hanime:785911943566983199>',
+        SPOTIFY: '<:spotify:795029215354290226>',
+        NHENTAI: '<:nhentai:795030689732886568>',
     },
     CONFIG: {
         PREFIX: 'i!',

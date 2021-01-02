@@ -14,7 +14,7 @@ module.exports = class extends Command {
         name: 'hanime',
         case: 'Hanime',
         desc: 'Commands to interact with hanime.tv.',
-        emoji: '🧚',
+        emoji: constants.EMOJIS.HANIME,
         priority: 0,
         subcommands: [{
             name: 'search',
