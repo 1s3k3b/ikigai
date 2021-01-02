@@ -39,7 +39,7 @@ module.exports = class InfoCommand extends Command {
                 .addField('Invite', `[Click here](${await msg.client.generateInvite()})`)
                 .addField('Discord Server', `[Click here](https://discord.gg/${constants.CONFIG.SERVER_INVITE})`)
                 .addField('Website', '[Click here](https://1s3k3b.github.io/discord/ikigai)')
-                .addField('Bot Lists', `[top.gg](https://top.gg/bot/${constants.CONFIG.CLIENT})\n> ${f(topgg!.points)} upvotes\n> ${f(topgg!.monthlyPoints)} monthly upvotes\n[DiscordBotList](https://discord.ly/ikigai)\n> ${f(dbl.metrics.invites)} invites\n> ${f(dbl.upvotes)} upvotes`)
+                .addField('Bot Lists', `[top.gg](https://top.gg/bot/${constants.CONFIG.CLIENT})\n> ${f(topgg!.points)} upvotes\n> ${f(topgg!.monthlyPoints)} monthly upvotes\n[DiscordBotList](https://discord.ly/ikigai)\n> ${f(dbl.upvotes)} upvotes\n> ${dbl.rating.toFixed(1)} (${f(dbl.ratings)} ratings)`)
                 .addField(
                     'Source Code',
                     `[${await msg.client.github.fetchRepo(constants.REST.GITHUB.BOT_REPO).then(d => f(d!.stargazers_count))} stars](${constants.REST.GITHUB.HTML_BASE}/${constants.REST.GITHUB.BOT_REPO})`

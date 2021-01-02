@@ -170,8 +170,9 @@ export interface DBLBot {
     slug: string;
     created_at: number;
     updated_at: number;
-    metrics: { invites: number; };
     upvotes: number;
+    rating: number;
+    ratings: number;
     id: string;
 }
 

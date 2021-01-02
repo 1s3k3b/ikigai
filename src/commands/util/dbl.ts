@@ -32,7 +32,7 @@ module.exports = class extends Command {
                 .setThumbnail(`https://cdn.discordapp.com/avatars/${res.id}/${res.profile.avatar}.png?size=2048`)
                 .setColor('RANDOM')
                 .setDescription(res.short_description)
-                .addField('Stats', `${res.metrics.invites.toLocaleString('en')} invites\n${res.upvotes.toLocaleString('en')} upvotes`)
+                .addField('Stats', `${res.upvotes.toLocaleString('en')} upvotes\nRating: ${res.rating.toFixed(1)} (${res.ratings.toLocaleString('en')} ratings)`)
                 .addField('Data', `Prefix: \`${res.prefix}\`\n${
                     [['website', 'Website'], ['oauth_url', 'Invite Link'], ['server_invite', 'Support Server']]
                         .map(([x, y]) => res[<keyof typeof res>x] && `[${y}](${res[<keyof typeof res>x]})`)
