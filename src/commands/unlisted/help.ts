@@ -59,7 +59,7 @@ module.exports = class extends Command {
                 .setColor('RANDOM')
                 .setTitle(`${categories[cmd.category]} ${msg.client.util.capitalize(cmd.name)} Command`)
                 .setFooter(`Use the ${constants.CONFIG.PREFIX}help <command|category> command to get info about a command or a category.\n\[optional], <required>`)
-                .setDescription('`' + `${cmd.prefix}${cmd.name} ${
+                .setDescription(`${cmd.desc}\n\`${cmd.prefix}${cmd.name} ${
                     Object
                         .keys(cmd.args || {})
                         .join(' ')
