@@ -29,9 +29,9 @@ module.exports = class extends Command {
                 .setTitle('Vote')
                 .setURL(`${constants.REST.TOP_GG.HTML_BOT}${constants.CONFIG.CLIENT}/vote`)
                 .setColor(voted ? 'GREEN' : 'RED')
-                .setDescription(`Please consider voting.`)
+                .setDescription('Please consider voting.')
                 .addField('Votes', `${res!.points.toLocaleString('en')} overall\n${res!.monthlyPoints.toLocaleString('en')} monthly`)
-                .addField(u.tag, `${u.id === msg.author.id ? 'You have' : `${u.tag} has`}${voted ? '' : ' not'} voted.`)
+                .addField(u.tag, `${u.id === msg.author.id ? 'You have' : `${u.tag} has`}${voted ? '' : ' not'} voted.`),
         });
     }
-}
+};

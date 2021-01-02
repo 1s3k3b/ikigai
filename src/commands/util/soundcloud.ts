@@ -14,7 +14,7 @@ module.exports = class extends Command {
         case: 'SoundCloud',
         emoji: '☁️',
         desc: `Commands to interact with [SoundCloud](${constants.REST.SOUNDCLOUD})`,
-        priority: 10,
+        priority: 11,
         subcommands: [{
             name: 'song',
             aliases: ['track'],

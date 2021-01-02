@@ -33,6 +33,7 @@ export default <const>{
             BOT_REPO: '1s3k3b/ikigai',
             BOT_REPO_RAW: 'https://raw.githubusercontent.com/1s3k3b/ikigai/master/',
             REPO: 'https://api.github.com/repos/',
+            USER: 'https://api.github.com/users/',
         },
         NHENTAI: {
             BASE: 'https://nhentai.net',
@@ -98,6 +99,13 @@ export default <const>{
         GOOGLE: {
             AUTOCOMPLETE: 'https://suggestqueries.google.com/complete/search?client=chrome&q=',
             SEARCH: 'https://google.com/search?q=',
+        },
+    },
+    EMOJIS: {
+        GITHUB: {
+            FORKS: '<:fork:792516132472225802>',
+            ISSUES: '<:issue:792514319527051294>',
+            ICON: '<:gh:795002783634948116>',
         },
     },
     CONFIG: {

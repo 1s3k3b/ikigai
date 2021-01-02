@@ -134,10 +134,10 @@ export default class Util {
             weeb: 2,
             util: 3,
             fun: 4,
-            text: 6,
-            nsfw: 7,
-            image: 8,
-            search: 12,
+            text: 7,
+            nsfw: 8,
+            image: 9,
+            search: 13,
         };
 
         return {

@@ -124,8 +124,8 @@ module.exports = class extends Command {
                 .map(x => x.reverse())
         );
         sent
-            .createReactionCollector((r, u) => !!emojis[r.emoji.name] && u.id === msg.author.id)
-            .on('collect', async (r, u) => r.users.remove(u).catch(() => {}) && this.category(sent, r.emoji.name, categoryDescriptions, categoryCases, commands, emojis[r.emoji.name]));
+            .createReactionCollector((r, u) => !!emojis[r.emoji.toString()] && u.id === msg.author.id)
+            .on('collect', async (r, u) => r.users.remove(u).catch(() => {}) && this.category(sent, r.emoji.toString(), categoryDescriptions, categoryCases, commands, emojis[r.emoji.toString()]));
         for (const em of Object.keys(emojis)) await sent.react(em);
     }
 };

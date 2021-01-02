@@ -42,7 +42,7 @@ module.exports = class InfoCommand extends Command {
                 .addField('Bot Lists', `[top.gg](https://top.gg/bot/${constants.CONFIG.CLIENT})\n> ${f(topgg!.points)} upvotes\n> ${f(topgg!.monthlyPoints)} monthly upvotes\n[DiscordBotList](https://discord.ly/ikigai)\n> ${f(dbl.metrics.invites)} invites\n> ${f(dbl.upvotes)} upvotes`)
                 .addField(
                     'Source Code',
-                    `[${await msg.client.github.fetchRepo(constants.REST.GITHUB.BOT_REPO).then(d => f(d.stargazers_count))} stars](${constants.REST.GITHUB.HTML_BASE}/${constants.REST.GITHUB.BOT_REPO})`
+                    `[${await msg.client.github.fetchRepo(constants.REST.GITHUB.BOT_REPO).then(d => f(d!.stargazers_count))} stars](${constants.REST.GITHUB.HTML_BASE}/${constants.REST.GITHUB.BOT_REPO})`
                 ),
         });
     }
