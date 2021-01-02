@@ -4,7 +4,6 @@ export default <const>{
     REST: {
         NEKOBOT: 'https://nekobot.xyz/api/image?type=',
         NEKOS_LIFE: 'https://cdn.nekos.life/tits/tits',
-        HASTEBIN_BASE: 'https://hasteb.in/',
         GENIUS_SEARCH: 'https://api.genius.com/search?q=',
         USELESSWEB: 'https://d33wubrfki0l68.cloudfront.net/js/78c014fd096b53b392b29be9b2c624047323e61f/js/uselessweb.js',
         DISCORD_EMOJI: 'https://cdn.discordapp.com/emojis/',
@@ -21,6 +20,11 @@ export default <const>{
         QR: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=',
         FUNFACT: 'https://uselessfacts.jsph.pl/random.json?language=en',
         SOUNDCLOUD: 'https://soundcloud.com',
+        SRCBIN: {
+            BASE: 'https://sourceb.in/',
+            CDN: 'https://cdn.sourceb.in/bins/',
+            POST: 'https://sourceb.in/api/bins',
+        },
         TOP_GG: {
             POST: 'https://top.gg/api/bots/stats',
             SEARCH: 'https://top.gg/api/search?type=bot&q=',

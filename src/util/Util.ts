@@ -229,16 +229,19 @@ export default class Util {
                     || msg.author
             ).presence.activities.find(x => x.type === 'CUSTOM_STATUS')?.emoji;
     }
-    public static async hasteMessage(msg: Message, str: string, cb = false) {
-        return msg.channel.send(str.length > 1993 ? await this.haste(str, false) : cb ? '```\n' + str + '```' : str);
+    public static async srcbinMessage(msg: Message, str: string, cb = false) {
+        return msg.channel.send(str.length > 1993 ? await this.srcbin(str, true) : cb ? '```\n' + str + '```' : str);
     }
-    public static haste(text: string, lang: boolean) {
-        return fetch(`${constants.REST.HASTEBIN_BASE}documents`, {
+    public static srcbin(text: string, raw: boolean) {
+        return fetch(constants.REST.SRCBIN.POST, {
             method: 'POST',
-            body: text,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ files: [{ content: text }] }),
         })
             .then(d => d.json())
-            .then((d: { key: string }) => `${constants.REST.HASTEBIN_BASE}${lang ? '' : 'raw/'}${d.key}${lang ? '.js' : ''}`);
+            .then((d: { key: string }) => `${constants.REST.SRCBIN[raw ? 'CDN' : 'BASE']}${d.key}${raw ? '/0' : ''}`);
     }
     public static async lyrics(s: string) {
         const { response: { hits: [res] } } = await fetch(

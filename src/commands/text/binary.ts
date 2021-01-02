@@ -19,7 +19,7 @@ module.exports = class extends Command {
     }
 
     public async fn(msg: Message, { text }: CommandInfo) {
-        msg.client.util.hasteMessage(
+        msg.client.util.srcbinMessage(
             msg,
             /^([01]+( |$))+$/.test(text)
                 ? msg.client.util.binToStr(text)

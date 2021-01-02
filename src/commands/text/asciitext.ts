@@ -43,7 +43,7 @@ module.exports = class extends Command {
                     }))),
             }],
         );
-        msg.client.util.hasteMessage(
+        msg.client.util.srcbinMessage(
             msg,
             textSync(
                 text,

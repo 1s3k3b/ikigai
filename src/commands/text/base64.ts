@@ -20,7 +20,7 @@ module.exports = class extends Command {
     }
 
     public async fn(msg: Message, { args: [type, ...text] }: CommandInfo) {
-        msg.client.util.hasteMessage(
+        msg.client.util.srcbinMessage(
             msg,
             msg.client.util.padZws(
                 Buffer

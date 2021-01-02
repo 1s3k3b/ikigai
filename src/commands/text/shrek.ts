@@ -34,7 +34,7 @@ module.exports = class extends Command {
 
     public async fn(msg: Message, { text, flags }: CommandInfo) {
         const pronoun = <string>flags.pronoun || 'he';
-        msg.client.util.hasteMessage(msg, (
+        msg.client.util.srcbinMessage(msg, (
             flags.n
                 ? copypasta.split(/\.\s*/g).join('.\n')
                 : flags.gt

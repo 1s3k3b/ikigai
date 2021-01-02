@@ -61,6 +61,6 @@ module.exports = class extends Command {
                 ? '\n' + this.alignElements(sorted, op, 'number')
                 : ''
         }`;
-        msg.client.util.hasteMessage(msg, msg.client.util.padZws(res), true);
+        msg.client.util.srcbinMessage(msg, msg.client.util.padZws(res), true);
     }
 };

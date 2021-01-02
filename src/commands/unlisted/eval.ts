@@ -30,7 +30,7 @@ module.exports = class extends Command {
                 flags.send
                     ? evaled
                     : str.length > 2000
-                        ? await msg.client.util.haste(str, !flags.raw)
+                        ? await msg.client.util.srcbin(str, !!flags.raw)
                         : str,
                 { code: str.length < 2000 && !flags.send ? 'js' : undefined },
             );
