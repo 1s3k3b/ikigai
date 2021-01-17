@@ -122,7 +122,12 @@ export interface JishoWord {
 }
 
 export interface WhatAnimeResponse {
-    docs: { mal_id: number; }[];
+    docs:
+        (
+            Record<'from' | 'to' | 'at' | 'episode' | 'anilist_id' | 'mal_id' | 'similarity', number>
+            & Record<'filename' | 'tokenthumb', string>
+            & { is_adult: boolean }
+        )[];
 }
 
 export interface YouTubeSearchVideo {

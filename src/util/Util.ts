@@ -179,7 +179,7 @@ export default class Util {
             categoryPriorities,
         };
     }
-    public static paginate<T>(msg: Message, resend: boolean, arr: T[], cb: (x: T) => (string | MessageOptions)[], baseI?: number, none?: (string | MessageOptions)[]) {
+    public static paginate<T>(msg: Message, resend: boolean, arr: T[], cb: (x: T) => (string | MessageOptions)[] | Promise<(string | MessageOptions)[]>, baseI?: number, none?: (string | MessageOptions)[]) {
         const emojis = ['⬅️', '➡️'];
         let last: Message;
         let collector: ReactionCollector;

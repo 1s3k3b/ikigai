@@ -9,7 +9,6 @@ export default <const>{
         DISCORD_EMOJI: 'https://cdn.discordapp.com/emojis/',
         REDDIT: 'https://www.reddit.com',
         JISHO: 'https://jisho.org/api/v1/search/words?keyword=',
-        WHATANIME: 'https://trace.moe/api/search?url=',
         MAL: 'https://myanimelist.net',
         SPOTIFY: 'https://open.spotify.com',
         EITHER: 'http://either.io',
@@ -20,6 +19,11 @@ export default <const>{
         QR: 'https://api.qrserver.com/v1/read-qr-code/?fileurl=',
         FUNFACT: 'https://uselessfacts.jsph.pl/random.json?language=en',
         SOUNDCLOUD: 'https://soundcloud.com',
+        WHATANIME: {
+            SEARCH: 'https://trace.moe/api/search?url=',
+            IMG_PREVIEW: 'https://trace.moe/thumbnail.php?anilist_id=',
+            VID_PREVIEW: 'https://media.trace.moe/video/',
+        },
         SRCBIN: {
             BASE: 'https://sourceb.in/',
             CDN: 'https://cdn.sourceb.in/bins/',
