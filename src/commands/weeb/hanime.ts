@@ -168,7 +168,7 @@ ${res.data.censored ? 'Censored' : 'Uncensored'}`)
                     .addField(
                         'Tags',
                         res.tags
-                            .map(x => `${x.name} (${f(x.videos)})`)
+                            .map(x => `[${x.name}](${constants.REST.HANIME.TAGS}${encodeURIComponent(x.name)}) (${f(x.videos)})`)
                             .join('\n'),
                     )
                     .addField('Brand', `[${res.brand.title}](${constants.REST.HANIME.BRANDS}${res.brand.slug}) (${f(res.brand.uploads)})
