@@ -176,7 +176,7 @@ Website: ${res.brand.website || 'none'}`)
                     .addField('Franchise', `${res.franchise.title}
 Videos:
 ${res.franchise.videos.map(x => `> ${x.name}`).join('\n')}`)
-                    .addField('Titles', res.data.titles.map(x => `${x.title} (${x.lang})`).join('\n'))
+                    .addField(!!res.data.titles.length && 'Titles', res.data.titles.map(x => `${x.title} (${x.lang})`).join('\n'))
                     [flags.poster ? 'setImage' : 'toJSON'](res.data.poster),
                 files: flags.storyboard ? [res.storyboards[0].url] : [],
             });
