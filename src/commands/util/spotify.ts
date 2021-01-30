@@ -22,8 +22,10 @@ module.exports = class extends Command {
                 '<id>': 'The playlist ID.',
             },
             flags: {
-                stats: 'Whether to get artist stats of the playlist.',
+                artists: 'Whether to get artist stats of the playlist.',
+                albums: 'Whether to get album stats of the playlist.',
             },
+            examples: ['6NwqUX4db2CuSgLUkKOFoG --artists'],
         }, {
             name: 'user',
             desc: 'Get info about a user.',
@@ -31,7 +33,8 @@ module.exports = class extends Command {
                 '<id>': 'The user ID.',
             },
             flags: {
-                stats: 'Whether to get artist stats of the user.',
+                artists: 'Whether to get artist stats of the user.',
+                albums: 'Whether to get album stats of the user.',
             },
         }, {
             name: 'song',
@@ -49,13 +52,25 @@ module.exports = class extends Command {
         });
     }
 
-    private playlistArtists([, d]: [any, SpotifyPlaylist[1]]) {
+    private playlistArtists(d: SpotifyPlaylist['tracks']['items']) {
         return d
-            .flatMap(([, x]) => x)
+            .flatMap(x => x.track.artists.map((x, i) => <[boolean, SpotifyPlaylist['tracks']['items'][number]['track']['artists'][number]]>[!i, x]))
             .reduce(
-                (a, b) => (a[b[0]] = [(a[b[0]]?.[0] || 0) + 1, b[1]], a),
-                <Record<string, [number, string]>>{},
+                (a, [m, b]) => (
+                    a[b.name] = {
+                        url: b.external_urls.spotify,
+                        songs: (a[b.name]?.songs || 0) + +m,
+                        features: (a[b.name]?.features || 0) + +!m
+                    },
+                a),
+                <Record<string, { url: string; songs: number; features: number; }>>{}
             );
+    }
+    private playlistAlbums(d: SpotifyPlaylist['tracks']['items']) {
+        return d.reduce(
+            (a, b) => (a[b.track.album.name] = [b.track.album.external_urls.spotify, (a[b.track.album.name]?.[1] || 0) + 1], a),
+            <Record<string, [string, number]>>{}
+        );
     }
 
     public async fn(msg: Message, { args: [type, arg], flags }: CommandInfo) {
@@ -70,15 +85,16 @@ module.exports = class extends Command {
                 )
                 .catch(() => undefined);
             if (!res) return msg.channel.send('Playlist not found.');
-            if (flags.stats) {
+            const desc = `${res.name}\nBy [${res.owner.display_name}](${res.owner.external_urls.spotify})\n${res.tracks.items.length} songs\n${res.description}`;
+            if (flags.artists) {
                 return msg.client.util.paginate(
                     msg,
                     false,
                     msg.client.util.split(msg.client.util.split(
                         Object
-                            .entries(this.playlistArtists(res))
-                            .sort(([, [a]], [, [b]]) => b - a)
-                            .map(([k, v]) => `[${k}](${v[1]}): ${v[0]} songs`),
+                            .entries(this.playlistArtists(res.tracks.items))
+                            .sort(([, a], [, b]) => b.songs + b.features / 2 - (a.songs + a.features / 2))
+                            .map(([k, v]) => `[${k}](${v.url}): ${[v.songs + ' songs', v.features + ' features'].filter(x => !x.startsWith('0')).join(', ')}`),
                         0,
                         (a, b) => [...a, b].join('\n').length > 1024,
                     ), 3),
@@ -86,9 +102,37 @@ module.exports = class extends Command {
                         embed: msg.client.util
                             .embed()
                             .setTitle('Spotify Playlist')
-                            .setURL(`${constants.REST.SPOTIFY}/playlist/${arg}`)
+                            .setURL(res.external_urls.spotify)
                             .setColor('#1DB954')
-                            .setDescription(`${res[0][0]}\nBy [${res[0][1][0]}](${res[0][1][1]})\n${res[0][3]}\n${res[0][2]}`)
+                            .setDescription(desc)
+                            .setThumbnail(res.images[0].url)
+                            .addFields(a.map(x => ({
+                                name: '\u200b',
+                                value: x.join('\n'),
+                            }))),
+                    }],
+                );
+            }
+            if (flags.albums) {
+                return msg.client.util.paginate(
+                    msg,
+                    false,
+                    msg.client.util.split(msg.client.util.split(
+                        Object
+                            .entries(this.playlistAlbums(res.tracks.items))
+                            .sort(([, a], [, b]) => b[1] - a[1])
+                            .map(([k, v]) => `[${k}](${v[0]}): ${v[1]} songs`),
+                        0,
+                        (a, b) => [...a, b].join('\n').length > 1024,
+                    ), 3),
+                    a => [{
+                        embed: msg.client.util
+                            .embed()
+                            .setTitle('Spotify Playlist')
+                            .setURL(res.external_urls.spotify)
+                            .setColor('#1DB954')
+                            .setDescription(desc)
+                            .setThumbnail(res.images[0].url)
                             .addFields(a.map(x => ({
                                 name: '\u200b',
                                 value: x.join('\n'),
@@ -99,17 +143,22 @@ module.exports = class extends Command {
             return msg.client.util.paginate(
                 msg,
                 false,
-                msg.client.util.split(res[1], 10),
+                msg.client.util.split(res.tracks.items, 10),
                 a => [{
                     embed: msg.client.util
                         .embed()
                         .setTitle('Spotify Playlist')
                         .setURL(`${constants.REST.SPOTIFY}/playlist/${arg}`)
                         .setColor('#1DB954')
-                        .setDescription(`${res[0][0]}\nBy [${res[0][1][0]}](${res[0][1][1]})\n${res[0][3]}\n${res[0][2]}`)
+                        .setDescription(desc)
+                        .setThumbnail(res.images[0].url)
                         .addFields(a.map(s => ({
                             name: '\u200b',
-                            value: `${s[0]}\nBy ${s[1].map(x => `[${x[0]}](${x[1]})`).join(', ')}\nOn [${s[2][0]}](${s[2][1]})`,
+                            value: `[${s.track.name}](${s.track.external_urls.spotify})
+By ${s.track.artists.map(x => `[${x.name}](${x.external_urls.spotify})`).join(', ')}
+On [${s.track.album.name}](${s.track.album.external_urls.spotify})
+Added at ${new Date(s.added_at).toDateString()}
+Duration: ${pms(s.track.duration_ms, { secondsDecimalDigits: 0 })}`,
                             inline: true,
                         }))),
                 }],
@@ -125,23 +174,54 @@ module.exports = class extends Command {
                 )
                 .catch(() => undefined);
             if (!res) return msg.channel.send('User not found.');
-            if (flags.stats) {
+            if (flags.artists) {
                 return msg.client.util.paginate(
                     msg,
                     false,
                     msg.client.util.split(msg.client.util.split(
                         Object
-                            .entries(
-                                this.playlistArtists(
-                                    [, (await Promise
-                                        .all(res[1].map(([, x]) =>
-                                            msg.client.spotify.fetchPlaylist(x.split('/').slice(-1)[0])
-                                        )))
-                                        .reduce((a, b) => [...a, ...b[1]], <SpotifyPlaylist[1]>[]),
-                                    ])
-                            )
-                            .sort(([, [a]], [, [b]]) => b - a)
-                            .map(([k, v]) => `[${k}](${v[1]}): ${v[0]} songs`),
+                            .entries(this.playlistArtists(
+                                (await Promise
+                                    .all(res[1].map(([, x]) =>
+                                        msg.client.spotify.fetchPlaylist(x.split('/').slice(-1)[0])
+                                    )))
+                                    .reduce((a, b) => [...a, ...b.tracks.items], <SpotifyPlaylist['tracks']['items']>[]),
+                            ))
+                            .sort(([, a], [, b]) => b.songs + b.features / 2 - (a.songs + a.features / 2))
+                            .map(([k, v]) => `[${k}](${v.url}): ${[v.songs + ' songs', v.features + ' features'].filter(x => !x.startsWith('0')).join(', ')}`),
+                        0,
+                        (a, b) => [...a, b].join('\n').length > 1024,
+                    ), 3),
+                    a => [{
+                        embed: msg.client.util
+                            .embed()
+                            .setTitle('Spotify User')
+                            .setURL(`${constants.REST.SPOTIFY}/user/${arg}`)
+                            .setColor('#1DB954')
+                            .setDescription(`${res[0][0]}`)
+                            .setThumbnail(res[0][1])
+                            .addFields(a.map(x => ({
+                                name: '\u200b',
+                                value: x.join('\n'),
+                            }))),
+                    }],
+                );
+            }
+            if (flags.albums) {
+                return msg.client.util.paginate(
+                    msg,
+                    false,
+                    msg.client.util.split(msg.client.util.split(
+                        Object
+                            .entries(this.playlistAlbums(
+                                (await Promise
+                                    .all(res[1].map(([, x]) =>
+                                        msg.client.spotify.fetchPlaylist(x.split('/').slice(-1)[0])
+                                    )))
+                                    .reduce((a, b) => [...a, ...b.tracks.items], <SpotifyPlaylist['tracks']['items']>[]),
+                            ))
+                            .sort(([, a], [, b]) => b[1] - a[1])
+                            .map(([k, v]) => `[${k}](${v[0]}): ${v[1]} songs`),
                         0,
                         (a, b) => [...a, b].join('\n').length > 1024,
                     ), 3),

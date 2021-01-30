@@ -332,19 +332,35 @@ export interface JikanMangaList {
 
 // #region spotify
 
-export type SpotifyPlaylist = [
-    [
-        string,
-        string[],
-        string,
-        string,
-    ],
-    [
-        string,
-        string[][],
-        string[],
-    ][],
-];
+export interface SpotifyPlaylist {
+    description: string;
+    external_urls: { spotify: string };
+    followers: { total: number };
+    images: { url: string }[];
+    name: string;
+    owner: {
+        display_name: string;
+        external_urls: { spotify: string };
+    };
+    tracks: {
+        items: {
+            added_at: string;
+            track: {
+                album: {
+                    external_urls: { spotify: string };
+                    name: string;
+                };
+                artists: {
+                    external_urls: { spotify: string };
+                    name: string;
+                }[];
+                duration_ms: number;
+                external_urls: { spotify: string };
+                name: string;
+            };
+        }[];
+    };
+}
 
 export interface SpotifyTrack {
     name: string;
