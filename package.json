@@ -14,6 +14,7 @@
     "ascii-table": "0.0.9",
     "aurora-djs": "^2.0.1",
     "cheerio": "^1.0.0-rc.3",
+    "color-convert": "^2.0.1",
     "discord.js": "^12.4.1",
     "dotenv": "^8.2.0",
     "elementry": "^1.0.1",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.22",
+    "@types/color-convert": "^2.0.0",
     "@types/figlet": "^1.2.1",
     "@types/hepburn": "^1.2.0",
     "@types/mathjs": "^6.0.7",
